@@ -1,0 +1,415 @@
+<!DOCTYPE html><html class="dark" lang="zh-CN"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><meta content="mobile_tab" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=JetBrains+Mono:wght@500;700&amp;family=Hanken+Grotesk:wght@400;500;600&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: 'class', theme: { extend: { colors: { 'tertiary': '#ffdfaf', 'on-tertiary-fixed-variant': '#604100', 'on-primary-fixed-variant': '#005226', 'error-container': '#93000a', 'surface-dim': '#111415', 'secondary-container': '#00e3fd', 'primary': '#6dff9a', 'outline-variant': '#3b4a3d', 'background': '#111415', 'primary-fixed-dim': '#00e474', 'primary-fixed': '#62ff96', 'on-secondary-fixed-variant': '#004f58', 'on-secondary-container': '#00616d', 'on-background': '#e1e3e4', 'on-surface-variant': '#bacbb9', 'primary-container': '#00e575', 'surface-variant': '#323536', 'on-tertiary': '#432c00', 'tertiary-container': '#ffbb3d', 'on-surface': '#e1e3e4', 'surface-container-lowest': '#0c0f10', 'outline': '#859585', 'on-secondary': '#00363d', 'surface-container-high': '#272a2b', 'on-tertiary-fixed': '#281900', 'inverse-surface': '#e1e3e4', 'secondary-fixed-dim': '#00daf3', 'surface-bright': '#373a3b', 'inverse-primary': '#006d34', 'inverse-on-surface': '#2e3132', 'on-error-container': '#ffdad6', 'on-error': '#690005', 'on-secondary-fixed': '#001f24', 'tertiary-fixed-dim': '#ffba38', 'surface-container': '#1d2021', 'secondary-fixed': '#9cf0ff', 'on-primary-fixed': '#00210b', 'error': '#ffb4ab', 'secondary': '#bdf4ff', 'surface': '#111415', 'surface-container-highest': '#323536', 'on-tertiary-container': '#704c00', 'on-primary-container': '#00602d', 'on-primary': '#003918', 'surface-tint': '#00e474', 'tertiary-fixed': '#ffdeac', 'surface-container-low': '#191c1d' }, borderRadius: { 'DEFAULT': '0.125rem', 'lg': '0.25rem', 'xl': '0.5rem', 'full': '0.75rem' }, spacing: { 'space-sm': '0.5rem', 'space-xs': '0.25rem', 'space-md': '0.75rem', 'space-xl': '1.75rem', 'gutter': '0.75rem', 'gutter-tablet': '1rem', 'space-lg': '1.25rem', 'margin': '1rem', 'margin-tablet': '1.5rem' }, fontFamily: { 'telemetry-data': ['JetBrains Mono'], 'body-sm': ['Hanken Grotesk'], 'headline-md': ['Space Grotesk'], 'headline-lg': ['Space Grotesk'], 'headline-xl': ['Space Grotesk'], 'headline-sm': ['Space Grotesk'], 'body-lg': ['Hanken Grotesk'], 'label-sm': ['JetBrains Mono'], 'label-lg': ['JetBrains Mono'], 'headline-xl-mobile': ['Space Grotesk'], 'label-md': ['JetBrains Mono'], 'body-md': ['Hanken Grotesk'] }, fontSize: { 'telemetry-data': ['13px', { lineHeight: '16px', letterSpacing: '0.02em', fontWeight: '700' }], 'body-sm': ['12px', { lineHeight: '16px', fontWeight: '400' }], 'headline-md': ['22px', { lineHeight: '28px', fontWeight: '600' }], 'headline-lg': ['28px', { lineHeight: '34px', letterSpacing: '-0.01em', fontWeight: '600' }], 'headline-xl': ['40px', { lineHeight: '48px', letterSpacing: '-0.02em', fontWeight: '700' }], 'headline-sm': ['18px', { lineHeight: '24px', fontWeight: '600' }], 'body-lg': ['16px', { lineHeight: '24px', fontWeight: '400' }], 'label-sm': ['10px', { lineHeight: '14px', letterSpacing: '0.06em', fontWeight: '500' }], 'label-lg': ['14px', { lineHeight: '18px', letterSpacing: '0.04em', fontWeight: '600' }], 'headline-xl-mobile': ['30px', { lineHeight: '36px', letterSpacing: '-0.01em', fontWeight: '700' }], 'label-md': ['12px', { lineHeight: '16px', letterSpacing: '0.05em', fontWeight: '500' }], 'body-md': ['14px', { lineHeight: '20px', fontWeight: '400' }] } } } };</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;background-color:#111415;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style></head><body class="bg-surface text-on-surface font-body-md text-body-md flex flex-col min-h-screen selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 inset-x-0 z-50 bg-surface/90 backdrop-blur-xl pt-safe"><div class="px-margin py-space-xs flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm"><div class="flex items-center gap-space-sm"><span class="flex items-center gap-0.5 text-primary font-telemetry-data text-telemetry-data"><span class="material-symbols-outlined text-[14px]">battery_charging_full</span>94%</span><span class="flex items-center gap-0.5 font-label-sm text-label-sm"><span class="material-symbols-outlined text-[13px]">sd_storage</span>28.4G可用</span><span class="flex items-center gap-0.5 text-tertiary-fixed-dim font-label-sm text-label-sm"><span class="material-symbols-outlined text-[13px]">device_thermostat</span>34°C</span></div><div class="flex items-center gap-space-xs"><span class="flex items-center gap-0.5 px-space-xs py-0.5 bg-surface-container rounded-DEFAULT text-secondary-fixed font-label-sm text-label-sm"><span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed-dim animate-pulse"></span>离线 EfficientDet-Lite0</span></div></div><div class="h-14 px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="w-2.5 h-2.5 rounded-full bg-primary animate-ping opacity-75"></div><div><div class="flex items-center gap-space-xs"><h1 class="font-headline-sm text-headline-sm uppercase tracking-wide text-on-surface">过客哨 <span class="font-telemetry-data text-label-md text-on-surface-variant font-normal">PasserWatch</span></h1><span class="px-space-xs py-0.5 bg-surface-container-high text-primary font-label-sm text-label-sm rounded-DEFAULT">v0.2</span></div><p class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1"><span class="text-primary">● 哨兵巡视中</span><span class="text-outline">|</span><span class="">Detection Rules</span></p></div></div><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full px-margin pt-20 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full gap-space-lg">
+<!-- Top Banner / Code Module Architecture Status -->
+<div class="bg-surface-container rounded-xl p-space-md shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-7 h-7 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+</div>
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface">CaptureGate 调优</span>
+<span class="px-space-xs py-0.5 rounded-DEFAULT bg-primary/10 text-primary font-label-sm text-label-sm">CORE 05/07</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">模块隔离：FrameAnalyzer 负责推理 ⇄ CaptureGate 负责状态机闭环</p>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label-sm text-label-sm text-primary flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+          热重载就绪
+        </span>
+<span class="font-telemetry-data text-label-sm text-on-surface-variant">PIPE: KEEP_LATEST</span>
+</div>
+</div>
+</div>
+<!-- State Machine Live Visualizer (Interactive Simulation) -->
+<div class="bg-surface-container rounded-xl p-space-md shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary-fixed text-[18px]">schema</span>
+<span class="font-label-lg text-label-lg text-on-surface">状态机流转监测 (Live Simulation)</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-sm py-1 bg-surface-container-high hover:bg-surface-bright text-on-surface font-label-sm text-label-sm rounded-DEFAULT transition-colors flex items-center gap-1 active:scale-95" id="simStepBtn">
+<span class="material-symbols-outlined text-[13px] text-primary">play_arrow</span>单步模拟
+        </button>
+<button class="px-space-xs py-1 bg-surface-container-low text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm rounded-DEFAULT" id="simResetBtn">
+          重置
+        </button>
+</div>
+</div>
+<!-- State Pipeline Nodes -->
+<div class="grid grid-cols-2 gap-space-xs" id="stateNodesContainer">
+<div class="state-node p-space-sm rounded-lg bg-surface-container-lowest transition-all" data-state="0">
+<div class="flex items-center justify-between mb-1">
+<span class="font-telemetry-data text-label-sm text-outline">STAGE 01</span>
+<span class="w-2 h-2 rounded-full bg-outline-variant status-dot"></span>
+</div>
+<p class="font-label-md text-label-md text-on-surface">未开始 / STANDBY</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">管线初态，模型等待</p>
+</div>
+<div class="state-node p-space-sm rounded-lg bg-surface-container-high transition-all" data-state="1">
+<div class="flex items-center justify-between mb-1">
+<span class="font-telemetry-data text-label-sm text-primary">STAGE 02</span>
+<span class="w-2 h-2 rounded-full bg-primary status-dot animate-pulse"></span>
+</div>
+<p class="font-label-md text-label-md text-on-surface">等待有人 / ARMED</p>
+<p class="font-body-sm text-body-sm text-primary mt-0.5">哨兵警戒，空场巡视</p>
+</div>
+<div class="state-node p-space-sm rounded-lg bg-surface-container-lowest transition-all" data-state="2">
+<div class="flex items-center justify-between mb-1">
+<span class="font-telemetry-data text-label-sm text-outline">STAGE 03</span>
+<span class="w-2 h-2 rounded-full bg-outline-variant status-dot"></span>
+</div>
+<p class="font-label-md text-label-md text-on-surface">确认中 (0/2 帧)</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">消抖防误触，中断即清零</p>
+</div>
+<div class="state-node p-space-sm rounded-lg bg-surface-container-lowest transition-all" data-state="3">
+<div class="flex items-center justify-between mb-1">
+<span class="font-telemetry-data text-label-sm text-outline">STAGE 04</span>
+<span class="w-2 h-2 rounded-full bg-outline-variant status-dot"></span>
+</div>
+<p class="font-label-md text-label-md text-on-surface">抓拍 &amp; 锁定 (LOCKED)</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">入库1张原图，去重锁定</p>
+</div>
+<div class="state-node p-space-sm rounded-lg bg-surface-container-lowest transition-all" data-state="4">
+<div class="flex items-center justify-between mb-1">
+<span class="font-telemetry-data text-label-sm text-outline">STAGE 05</span>
+<span class="w-2 h-2 rounded-full bg-outline-variant status-dot"></span>
+</div>
+<p class="font-label-md text-label-md text-on-surface">等待离开 (0.0s/2.0s)</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">持续离开判定保护区</p>
+</div>
+<div class="state-node p-space-sm rounded-lg bg-surface-container-lowest transition-all" data-state="5">
+<div class="flex items-center justify-between mb-1">
+<span class="font-telemetry-data text-label-sm text-outline">STAGE 06</span>
+<span class="w-2 h-2 rounded-full bg-outline-variant status-dot"></span>
+</div>
+<p class="font-label-md text-label-md text-on-surface">重置待命 / RE-ARMED</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">清零计数器，准备下一目标</p>
+</div>
+</div>
+<!-- Live Telemetry Monitor Bar -->
+<div class="bg-surface-container-lowest p-space-sm rounded-lg flex items-center justify-between font-telemetry-data text-label-sm">
+<div class="flex items-center gap-space-xs text-on-surface-variant">
+<span class="">GATE_STATUS:</span>
+<span class="text-primary font-bold" id="gateStatusText">ARMED (WAITING_PERSON)</span>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant">
+<span class="">HOLD_TIME:</span>
+<span class="text-secondary-fixed" id="gateHoldText">0.00s</span>
+</div>
+</div>
+</div>
+<!-- Calibration Sliders and Numerical Parameters -->
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between px-space-xs">
+<span class="font-label-lg text-label-lg text-on-surface">核心抓拍门控参数 (CaptureGate Params)</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">规范 §05 标准</span>
+</div>
+<!-- Param 1: Analysis FPS -->
+<div class="bg-surface-container rounded-xl p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[18px]">speed</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">分析频率 (ImageAnalysis FPS)</span>
+</div>
+<span class="px-space-sm py-0.5 rounded-DEFAULT bg-surface-container-high text-primary font-telemetry-data text-telemetry-data" id="fpsBadge">5 FPS</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        节流 200ms / 帧，配合 <span class="font-telemetry-data text-secondary-fixed">STRATEGY_KEEP_ONLY_LATEST</span> 防止老旧图像在内存挤压积压。
+      </p>
+<div class="flex items-center gap-space-md pt-space-xs">
+<input class="w-full accent-primary h-2 bg-surface-container-highest rounded-lg cursor-pointer" id="fpsRange" max="15" min="1" step="1" type="range" value="5">
+<span class="font-telemetry-data text-label-sm text-on-surface-variant whitespace-nowrap">200ms/帧</span>
+</div>
+</div>
+<!-- Param 2: Score Threshold -->
+<div class="bg-surface-container rounded-xl p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary-fixed text-[18px]">verified</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">置信度阈值 (Score Threshold)</span>
+</div>
+<span class="px-space-sm py-0.5 rounded-DEFAULT bg-surface-container-high text-secondary-fixed font-telemetry-data text-telemetry-data" id="scoreBadge">0.60</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        有效过滤非 <span class="font-telemetry-data text-primary">person</span> 类别标牌、阴影摆动物体及杂色低分误检。
+      </p>
+<div class="flex items-center gap-space-md pt-space-xs">
+<input class="w-full accent-primary h-2 bg-surface-container-highest rounded-lg cursor-pointer" id="scoreRange" max="0.95" min="0.30" step="0.05" type="range" value="0.60">
+<span class="font-telemetry-data text-label-sm text-on-surface-variant whitespace-nowrap">min: 0.30</span>
+</div>
+</div>
+<!-- Param 3: Consecutive Frames -->
+<div class="bg-surface-container rounded-xl p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-tertiary-fixed text-[18px]">filter_2</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">连续确认帧数 (Consecutive)</span>
+</div>
+<span class="px-space-sm py-0.5 rounded-DEFAULT bg-surface-container-high text-tertiary-fixed font-telemetry-data text-telemetry-data" id="frameBadge">2 帧</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        防止瞬间噪点误触。目标如果在中间有效无人判定或中断超过 1.0 秒则计数直接清零。
+      </p>
+<div class="flex items-center gap-space-md pt-space-xs">
+<input class="w-full accent-primary h-2 bg-surface-container-highest rounded-lg cursor-pointer" id="frameRange" max="5" min="1" step="1" type="range" value="2">
+<span class="font-telemetry-data text-label-sm text-on-surface-variant whitespace-nowrap">推荐 2</span>
+</div>
+</div>
+<!-- Param 4: Snapshot Count & De-duplication Policy -->
+<div class="bg-surface-container rounded-xl p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[18px]">camera</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">单次出现抓拍数</span>
+</div>
+<span class="px-space-sm py-0.5 rounded-DEFAULT bg-primary/20 text-primary font-telemetry-data text-telemetry-data">1 张 (严格去重)</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        单次通过事件严格锁定落盘 1 张高清原图。行人若在画面中持续停留数分钟，不产生冗余连续快照。
+      </p>
+<div class="bg-surface-container-lowest p-space-sm rounded-lg flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface">停留锁定机制状态</span>
+<span class="font-label-sm text-label-sm text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+          去重锁定生效中
+        </span>
+</div>
+</div>
+<!-- Param 5: Vacant Duration -->
+<div class="bg-surface-container rounded-xl p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary-fixed text-[18px]">hourglass_empty</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">离开确认持续时长 (Vacant)</span>
+</div>
+<span class="px-space-sm py-0.5 rounded-DEFAULT bg-surface-container-high text-secondary-fixed font-telemetry-data text-telemetry-data" id="vacantBadge">2.0 秒</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        抓拍锁定后，必须在画面中连续无人超过该阈值，状态机才重置待命，防止目标回头或遮挡误触发二次抓拍。
+      </p>
+<div class="flex items-center gap-space-md pt-space-xs">
+<input class="w-full accent-primary h-2 bg-surface-container-highest rounded-lg cursor-pointer" id="vacantRange" max="5.0" min="1.0" step="0.5" type="range" value="2.0">
+<span class="font-telemetry-data text-label-sm text-on-surface-variant whitespace-nowrap">1.0s - 5.0s</span>
+</div>
+</div>
+<!-- Param 6: Bounded Save Queue -->
+<div class="bg-surface-container rounded-xl p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-tertiary-fixed text-[18px]">queue</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">保存写入队列限制</span>
+</div>
+<span class="px-space-sm py-0.5 rounded-DEFAULT bg-surface-container-high text-tertiary-fixed font-telemetry-data text-telemetry-data">1 写入 + 2 缓冲</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        后台 IO 写入管道使用定长有界队列。若 I/O 堵塞超出缓冲上限则直接丢弃新帧，杜绝老旧 Android 发生 OOM 崩溃。
+      </p>
+<div class="grid grid-cols-3 gap-space-xs text-center font-telemetry-data text-label-sm">
+<div class="p-space-xs bg-surface-container-lowest rounded-lg text-primary">
+<p class="text-on-surface-variant text-[10px]">CURRENT WRITING</p>
+<p class="font-bold">1 / 1 SLOT</p>
+</div>
+<div class="p-space-xs bg-surface-container-lowest rounded-lg text-secondary-fixed">
+<p class="text-on-surface-variant text-[10px]">BUFFER QUEUE</p>
+<p class="font-bold">0 / 2 QUEUED</p>
+</div>
+<div class="p-space-xs bg-surface-container-lowest rounded-lg text-tertiary-fixed">
+<p class="text-on-surface-variant text-[10px]">DROP STRATEGY</p>
+<p class="font-bold">DROP_OLDEST</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Verification & Testing Checklist (Section 09 Acceptance Suite) -->
+<div class="bg-surface-container rounded-xl p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[18px]">fact_check</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">现场验收测试套件 (§09 用例)</span>
+</div>
+<span class="font-telemetry-data text-label-sm text-primary">5/5 PASS</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">真实物理环境连续压测结果，状态机逻辑无回归隐患。</p>
+<div class="flex flex-col gap-space-xs mt-space-xs">
+<!-- Item 1 -->
+<div class="flex items-start justify-between p-space-sm bg-surface-container-lowest rounded-lg">
+<div class="flex items-start gap-space-xs pr-space-sm">
+<span class="material-symbols-outlined text-primary text-[16px] mt-0.5">check_circle</span>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface">空场 / 椅子 / 光线波动</p>
+<p class="font-body-sm text-[11px] text-on-surface-variant">静置 30 分钟，零误检触发，背景无误判</p>
+</div>
+</div>
+<span class="px-space-xs py-0.5 rounded-DEFAULT bg-primary/20 text-primary font-telemetry-data text-label-sm whitespace-nowrap">验证通过</span>
+</div>
+<!-- Item 2 -->
+<div class="flex items-start justify-between p-space-sm bg-surface-container-lowest rounded-lg">
+<div class="flex items-start gap-space-xs pr-space-sm">
+<span class="material-symbols-outlined text-primary text-[16px] mt-0.5">check_circle</span>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface">正面 / 侧身走入视场</p>
+<p class="font-body-sm text-[11px] text-on-surface-variant">连续满 2 帧稳定触发 1 张高清原图</p>
+</div>
+</div>
+<span class="px-space-xs py-0.5 rounded-DEFAULT bg-primary/20 text-primary font-telemetry-data text-label-sm whitespace-nowrap">验证通过</span>
+</div>
+<!-- Item 3 -->
+<div class="flex items-start justify-between p-space-sm bg-surface-container-lowest rounded-lg">
+<div class="flex items-start gap-space-xs pr-space-sm">
+<span class="material-symbols-outlined text-primary text-[16px] mt-0.5">check_circle</span>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface">持续停留 (3分钟)</p>
+<p class="font-body-sm text-[11px] text-on-surface-variant">目标停留并轻微晃动，严格保持锁定，不重复抓拍</p>
+</div>
+</div>
+<span class="px-space-xs py-0.5 rounded-DEFAULT bg-primary/20 text-primary font-telemetry-data text-label-sm whitespace-nowrap">验证通过</span>
+</div>
+<!-- Item 4 -->
+<div class="flex items-start justify-between p-space-sm bg-surface-container-lowest rounded-lg">
+<div class="flex items-start gap-space-xs pr-space-sm">
+<span class="material-symbols-outlined text-secondary-fixed text-[16px] mt-0.5">shield</span>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface">短暂遮挡 / 漏检 (&lt;2.0s)</p>
+<p class="font-body-sm text-[11px] text-on-surface-variant">行人被立柱遮挡 1.2s，离开计时器未超时，防抖保护生效</p>
+</div>
+</div>
+<span class="px-space-xs py-0.5 rounded-DEFAULT bg-secondary-container/20 text-secondary-fixed font-telemetry-data text-label-sm whitespace-nowrap">保护生效</span>
+</div>
+<!-- Item 5 -->
+<div class="flex items-start justify-between p-space-sm bg-surface-container-lowest rounded-lg">
+<div class="flex items-start gap-space-xs pr-space-sm">
+<span class="material-symbols-outlined text-primary text-[16px] mt-0.5">check_circle</span>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface">离开满 2.0s 后再次进入</p>
+<p class="font-body-sm text-[11px] text-on-surface-variant">状态机重置，新人或再次折返正常抓拍第 2 张</p>
+</div>
+</div>
+<span class="px-space-xs py-0.5 rounded-DEFAULT bg-primary/20 text-primary font-telemetry-data text-label-sm whitespace-nowrap">验证通过</span>
+</div>
+</div>
+</div>
+<!-- Operational Action Controls -->
+<div class="flex flex-col gap-space-xs mt-space-xs">
+<div class="flex items-center gap-space-sm">
+<button class="flex-1 h-12 bg-surface-container hover:bg-surface-container-high text-on-surface font-body-md text-body-md rounded-lg flex items-center justify-center gap-space-xs transition-colors active:scale-95" id="resetDefaultsBtn">
+<span class="material-symbols-outlined text-[18px]">restore</span>
+        重置为 v0.2 建议值
+      </button>
+<button class="flex-1 h-12 bg-primary-container text-on-primary font-headline-sm text-headline-sm font-bold rounded-lg flex items-center justify-center gap-space-xs transition-transform active:scale-95 shadow-md" id="applyHotReloadBtn">
+<span class="material-symbols-outlined text-[20px]">bolt</span>
+        应用并立即生效
+      </button>
+</div>
+<div class="hidden text-center py-2 px-space-sm rounded-DEFAULT bg-primary/10 text-primary font-label-sm text-label-sm transition-all" id="toastMessage">
+      ✓ 参数已下发至 FrameAnalyzer 线程，CaptureGate 状态机已平滑重构。
+    </div>
+</div>
+</div>
+<script>
+  (function() {
+    // Slider binds
+    const fpsRange = document.getElementById('fpsRange');
+    const fpsBadge = document.getElementById('fpsBadge');
+    const scoreRange = document.getElementById('scoreRange');
+    const scoreBadge = document.getElementById('scoreBadge');
+    const frameRange = document.getElementById('frameRange');
+    const frameBadge = document.getElementById('frameBadge');
+    const vacantRange = document.getElementById('vacantRange');
+    const vacantBadge = document.getElementById('vacantBadge');
+
+    fpsRange.addEventListener('input', (e) => {
+      fpsBadge.textContent = e.target.value + ' FPS';
+    });
+    scoreRange.addEventListener('input', (e) => {
+      scoreBadge.textContent = Number(e.target.value).toFixed(2);
+    });
+    frameRange.addEventListener('input', (e) => {
+      frameBadge.textContent = e.target.value + ' 帧';
+    });
+    vacantRange.addEventListener('input', (e) => {
+      vacantBadge.textContent = Number(e.target.value).toFixed(1) + ' 秒';
+    });
+
+    // Reset Defaults
+    const resetDefaultsBtn = document.getElementById('resetDefaultsBtn');
+    resetDefaultsBtn.addEventListener('click', () => {
+      fpsRange.value = 5;
+      fpsBadge.textContent = '5 FPS';
+      scoreRange.value = 0.60;
+      scoreBadge.textContent = '0.60';
+      frameRange.value = 2;
+      frameBadge.textContent = '2 帧';
+      vacantRange.value = 2.0;
+      vacantBadge.textContent = '2.0 秒';
+
+      showToast('已重置为系统规范 v0.2 官方推荐默认值');
+    });
+
+    // Hot Reload
+    const applyHotReloadBtn = document.getElementById('applyHotReloadBtn');
+    const toast = document.getElementById('toastMessage');
+    function showToast(msg) {
+      toast.textContent = msg || '✓ 参数已下发至 FrameAnalyzer 线程，CaptureGate 状态机已平滑重构。';
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 3000);
+    }
+    applyHotReloadBtn.addEventListener('click', () => {
+      showToast();
+    });
+
+    // State Machine Simulation
+    let currentState = 1; // Start at ARMED (index 1)
+    const stateNodes = document.querySelectorAll('.state-node');
+    const gateStatusText = document.getElementById('gateStatusText');
+    const gateHoldText = document.getElementById('gateHoldText');
+    const simStepBtn = document.getElementById('simStepBtn');
+    const simResetBtn = document.getElementById('simResetBtn');
+
+    const statesMeta = [
+      { name: 'STANDBY (OFFLINE)', hold: '0.00s' },
+      { name: 'ARMED (WAITING_PERSON)', hold: '0.00s' },
+      { name: 'CONFIRMING (FRAME 1/2 -> 2/2)', hold: '0.20s' },
+      { name: 'TRIGGERED (SAVING_FRAME)', hold: '0.40s' },
+      { name: 'WAITING_VACANT (COUNTING)', hold: '1.20s' },
+      { name: 'RE_ARMED (READY_NEXT)', hold: '2.00s' }
+    ];
+
+    function renderState(idx) {
+      stateNodes.forEach((node, i) => {
+        const dot = node.querySelector('.status-dot');
+        if (i === idx) {
+          node.classList.remove('bg-surface-container-lowest');
+          node.classList.add('bg-surface-container-high');
+          dot.classList.remove('bg-outline-variant');
+          dot.classList.add('bg-primary', 'animate-pulse');
+        } else {
+          node.classList.remove('bg-surface-container-high');
+          node.classList.add('bg-surface-container-lowest');
+          dot.classList.remove('bg-primary', 'animate-pulse');
+          dot.classList.add('bg-outline-variant');
+        }
+      });
+      gateStatusText.textContent = statesMeta[idx].name;
+      gateHoldText.textContent = statesMeta[idx].hold;
+    }
+
+    simStepBtn.addEventListener('click', () => {
+      currentState = (currentState + 1) % statesMeta.length;
+      renderState(currentState);
+    });
+
+    simResetBtn.addEventListener('click', () => {
+      currentState = 1;
+      renderState(currentState);
+    });
+  })();
+</script></main><nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface/90 backdrop-blur-xl" data-active-classes="text-primary font-bold"><div class="grid grid-cols-3 items-center h-16 px-space-xs text-center"><a class="flex flex-col items-center justify-center gap-0.5 min-w-[64px] h-12 text-on-surface-variant hover:text-on-surface transition-colors" data-path="live-sentry" href="#"><span class="material-symbols-outlined text-[22px]">videocam</span><span class="font-label-sm text-label-sm">实时哨兵</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[64px] h-12 text-on-surface-variant hover:text-on-surface transition-colors" data-path="snapshots-gallery" href="#"><span class="material-symbols-outlined text-[22px]">photo_library</span><span class="font-label-sm text-label-sm">抓拍相册</span></a><a aria-current="page" class="flex flex-col items-center justify-center gap-0.5 min-w-[64px] h-12 transition-colors text-primary font-bold" data-path="detection-rules" href="#"><span class="material-symbols-outlined text-[22px]">tune</span><span class="font-label-sm text-label-sm">规则调优</span></a></div></nav>
+
+</body></html>

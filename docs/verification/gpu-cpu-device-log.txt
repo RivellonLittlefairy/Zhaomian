@@ -1,0 +1,118 @@
+--------- beginning of main
+10-13 22:29:01.983 30838 32226 I PasserWatch: inference=87ms fps=11.777302 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 9ms · 人员 56ms · 身体 21ms
+10-13 22:29:04.170 30838 32226 I PasserWatch: inference=66ms fps=10.928962 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 14ms · 人员 31ms · 身体 20ms
+10-13 22:29:06.448 30838 32226 I PasserWatch: inference=93ms fps=10.26694 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 11ms · 人员 52ms · 身体 29ms
+10-13 22:29:08.698 30838 32226 I PasserWatch: inference=78ms fps=11.111111 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 5ms · 人员 50ms · 身体 23ms
+10-13 22:29:11.091 30838 32226 I PasserWatch: inference=85ms fps=10.706638 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 10ms · 人员 52ms · 身体 21ms
+10-13 22:29:13.242 30838 32226 I PasserWatch: inference=62ms fps=13.078471 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 7ms · 人员 39ms · 身体 16ms
+10-13 22:29:18.474 30838 32226 I PasserWatch: inference=84ms fps=10.845987 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 11ms · 人员 48ms · 身体 23ms
+10-13 22:29:21.231 30838 32226 I PasserWatch: inference=118ms fps=8.333333 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 13ms · 人员 53ms · 身体 51ms
+10-13 22:29:23.294 30838 32697 I PasserWatch: saved session=3 bytes=35456
+10-13 22:29:24.188 30838 32226 I PasserWatch: inference=95ms fps=9.278351 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 12ms · 人员 56ms · 身体 26ms
+10-13 22:29:26.170 30838 32226 I PasserWatch: inference=87ms fps=10.695188 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 12ms · 人员 52ms · 身体 23ms
+10-13 22:31:55.365 30838 32226 I PasserWatch: inference=81ms fps=11.08871 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 11ms · 人员 52ms · 身体 18ms
+10-13 22:31:57.685 30838 32226 I PasserWatch: inference=96ms fps=10.6723585 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 9ms · 人员 59ms · 身体 27ms
+10-13 22:31:59.983 30838 32226 I PasserWatch: inference=86ms fps=11.270492 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 9ms · 人员 44ms · 身体 32ms
+10-13 22:32:02.437 30838 32226 I PasserWatch: inference=85ms fps=9.988901 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 10ms · 人员 50ms · 身体 24ms
+10-13 22:32:04.902 30838 32226 I PasserWatch: inference=86ms fps=10.183299 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 13ms · 人员 44ms · 身体 28ms
+10-13 22:32:07.398 30838 32226 I PasserWatch: inference=97ms fps=9.825328 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 12ms · 人员 52ms · 身体 32ms
+10-13 22:32:09.883 30838 32226 I PasserWatch: inference=89ms fps=10.111223 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 10ms · 人员 50ms · 身体 28ms
+10-13 22:32:12.421 30838 32226 I PasserWatch: inference=78ms fps=9.868421 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 9ms · 人员 43ms · 身体 25ms
+10-13 22:32:14.604 30838 32226 I PasserWatch: inference=92ms fps=10.245902 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 12ms · 人员 48ms · 身体 32ms
+10-13 22:32:16.764 30838 32226 I PasserWatch: inference=81ms fps=12.371134 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 9ms · 人员 53ms · 身体 18ms
+10-13 22:32:19.080 30838 32226 I PasserWatch: inference=91ms fps=11.025358 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 8ms · 人员 55ms · 身体 28ms
+10-13 22:32:58.758 30838 32226 I PasserWatch: inference=83ms fps=10.76716 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 8ms · 人员 44ms · 身体 29ms
+10-13 22:33:00.776 30838 32226 I PasserWatch: inference=66ms fps=12.383901 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 7ms · 人员 38ms · 身体 19ms
+10-13 22:33:02.795 30838 32226 I PasserWatch: inference=71ms fps=12.486993 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 6ms · 人员 41ms · 身体 23ms
+10-13 22:33:04.923 30838 32226 I PasserWatch: inference=80ms fps=11.591148 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 9ms · 人员 44ms · 身体 26ms
+10-13 22:33:07.334 30838 32226 I PasserWatch: inference=89ms fps=10.460251 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 8ms · 人员 51ms · 身体 29ms
+10-13 22:33:09.806 30838 32226 I PasserWatch: inference=85ms fps=10.050251 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 7ms · 人员 46ms · 身体 31ms
+10-13 22:33:12.248 30838 32226 I PasserWatch: inference=95ms fps=10.022272 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 16ms · 人员 50ms · 身体 26ms
+10-13 22:33:14.693 30838 32226 I PasserWatch: inference=82ms fps=10.080646 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 12ms · 人员 40ms · 身体 30ms
+10-13 22:33:17.109 30838 32226 I PasserWatch: inference=86ms fps=10.162601 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 13ms · 人员 44ms · 身体 29ms
+10-13 22:33:19.529 30838 32226 I PasserWatch: inference=78ms fps=10.799136 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 8ms · 人员 43ms · 身体 27ms
+10-13 22:33:22.009 30838 32226 I PasserWatch: inference=97ms fps=9.955752 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 10ms · 人员 55ms · 身体 31ms
+10-13 22:33:24.351 30838 32226 I PasserWatch: inference=69ms fps=10.638298 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 9ms · 人员 32ms · 身体 27ms
+10-13 22:33:26.747 30838 32226 I PasserWatch: inference=88ms fps=10.070494 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 13ms · 人员 47ms · 身体 27ms
+10-13 22:33:29.231 30838 32226 I PasserWatch: inference=79ms fps=9.944752 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 10ms · 人员 37ms · 身体 30ms
+10-13 22:33:31.726 30838 32226 I PasserWatch: inference=96ms fps=9.719222 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 11ms · 人员 54ms · 身体 30ms
+10-13 22:33:34.196 30838 32226 I PasserWatch: inference=83ms fps=9.836065 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 9ms · 人员 50ms · 身体 23ms
+10-13 22:33:36.568 30838 32226 I PasserWatch: inference=81ms fps=10.626992 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 9ms · 人员 44ms · 身体 28ms
+10-13 22:33:38.955 30838 32226 I PasserWatch: inference=86ms fps=10.183299 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 11ms · 人员 48ms · 身体 26ms
+10-13 22:33:41.193 30838 32226 I PasserWatch: inference=72ms fps=11.640212 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 9ms · 人员 37ms · 身体 25ms
+10-13 22:33:43.356 30838 32226 I PasserWatch: inference=79ms fps=11.22449 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 8ms · 人员 44ms · 身体 25ms
+10-13 22:33:45.660 30838 32226 I PasserWatch: inference=86ms fps=10.845987 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 9ms · 人员 48ms · 身体 28ms
+10-13 22:33:48.028 30838 32226 I PasserWatch: inference=83ms fps=10.131712 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 12ms · 人员 43ms · 身体 26ms
+10-13 22:33:50.421 30838 32226 I PasserWatch: inference=77ms fps=10.351967 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 9ms · 人员 49ms · 身体 18ms
+10-13 22:33:52.862 30838 32226 I PasserWatch: inference=86ms fps=10.183299 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 15ms · 人员 46ms · 身体 24ms
+10-13 22:33:55.344 30838 32226 I PasserWatch: inference=94ms fps=9.825328 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 10ms · 人员 53ms · 身体 31ms
+10-13 22:33:57.733 30838 32226 I PasserWatch: inference=88ms fps=10.526316 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 9ms · 人员 50ms · 身体 29ms
+10-13 22:34:00.110 30838 32226 I PasserWatch: inference=78ms fps=10.559662 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 9ms · 人员 48ms · 身体 21ms
+10-13 22:34:02.558 30838 32226 I PasserWatch: inference=79ms fps=10.131712 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 10ms · 人员 43ms · 身体 26ms
+10-13 22:34:04.990 30838 32226 I PasserWatch: inference=84ms fps=10.10101 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 9ms · 人员 51ms · 身体 24ms
+10-13 22:34:07.470 30838 32226 I PasserWatch: inference=81ms fps=9.988901 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 10ms · 人员 43ms · 身体 27ms
+10-13 22:34:09.839 30838 32226 I PasserWatch: inference=77ms fps=10.615711 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 10ms · 人员 40ms · 身体 26ms
+10-13 22:34:12.228 30838 32226 I PasserWatch: inference=104ms fps=10.152285 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 10ms · 人员 64ms · 身体 29ms
+10-13 22:34:14.661 30838 32226 I PasserWatch: inference=78ms fps=9.933775 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 9ms · 人员 42ms · 身体 26ms
+10-13 22:34:17.150 30838 32226 I PasserWatch: inference=89ms fps=10.0200405 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 11ms · 人员 55ms · 身体 22ms
+10-13 22:34:19.519 30838 32226 I PasserWatch: inference=89ms fps=10.58201 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 10ms · 人员 55ms · 身体 24ms
+10-13 22:34:21.938 30838 32226 I PasserWatch: inference=59ms fps=10.626992 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 7ms · 人员 38ms · 身体 13ms
+10-13 22:34:24.322 30838 32226 I PasserWatch: inference=80ms fps=10.330579 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 9ms · 人员 45ms · 身体 25ms
+10-13 22:34:26.794 30838 32226 I PasserWatch: inference=82ms fps=10.214504 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 10ms · 人员 44ms · 身体 27ms
+10-13 22:34:29.198 30838 32226 I PasserWatch: inference=83ms fps=10.330579 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 11ms · 人员 45ms · 身体 26ms
+10-13 22:34:31.670 30838 32226 I PasserWatch: inference=84ms fps=10.152285 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 10ms · 人员 47ms · 身体 26ms
+10-13 22:34:34.150 30838 32226 I PasserWatch: inference=96ms fps=9.825328 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 10ms · 人员 59ms · 身体 26ms
+10-13 22:34:36.609 30838 32226 I PasserWatch: inference=85ms fps=10.090817 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 13ms · 人员 44ms · 身体 28ms
+10-13 22:34:39.143 30838 32226 I PasserWatch: inference=88ms fps=10.060362 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 12ms · 人员 43ms · 身体 32ms
+10-13 22:34:41.662 30838 32226 I PasserWatch: inference=84ms fps=10.123734 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 12ms · 人员 44ms · 身体 27ms
+10-13 22:34:44.107 30838 32226 I PasserWatch: inference=93ms fps=10.10101 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 8ms · 人员 57ms · 身体 27ms
+10-13 22:34:46.585 30838 32226 I PasserWatch: inference=77ms fps=10.204082 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 9ms · 人员 42ms · 身体 25ms
+10-13 22:34:49.071 30838 32226 I PasserWatch: inference=78ms fps=9.771987 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 11ms · 人员 39ms · 身体 28ms
+10-13 22:34:51.534 30838 32226 I PasserWatch: inference=75ms fps=10.460251 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 9ms · 人员 39ms · 身体 26ms
+10-13 22:34:53.964 30838 32226 I PasserWatch: inference=84ms fps=10.080646 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 11ms · 人员 46ms · 身体 26ms
+10-13 22:34:56.366 30838 32226 I PasserWatch: inference=95ms fps=10.570825 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 12ms · 人员 51ms · 身体 30ms
+10-13 22:34:58.762 30838 32226 I PasserWatch: inference=96ms fps=10.362695 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 10ms · 人员 58ms · 身体 28ms
+10-13 22:35:01.164 30838 32226 I PasserWatch: inference=68ms fps=10.787486 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 10ms · 人员 37ms · 身体 20ms
+10-13 22:35:03.609 30838 32226 I PasserWatch: inference=74ms fps=10.224949 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 10ms · 人员 36ms · 身体 27ms
+10-13 22:35:06.028 30838 32226 I PasserWatch: inference=78ms fps=9.911894 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 10ms · 人员 40ms · 身体 28ms
+10-13 22:35:08.491 30838 32226 I PasserWatch: inference=72ms fps=10.570825 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 9ms · 人员 32ms · 身体 29ms
+10-13 22:35:10.909 30838 32226 I PasserWatch: inference=81ms fps=10.449321 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 11ms · 人员 42ms · 身体 28ms
+10-13 22:35:13.360 30838 32226 I PasserWatch: inference=99ms fps=10.362695 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 11ms · 人员 57ms · 身体 29ms
+10-13 22:35:15.850 30838 32226 I PasserWatch: inference=78ms fps=10.050251 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 10ms · 人员 41ms · 身体 27ms
+10-13 22:35:18.309 30838 32226 I PasserWatch: inference=95ms fps=10.214504 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 10ms · 人员 57ms · 身体 28ms
+10-13 22:35:20.797 30838 32226 I PasserWatch: inference=88ms fps=10.121457 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 9ms · 人员 53ms · 身体 26ms
+10-13 22:35:23.323 30838 32226 I PasserWatch: inference=86ms fps=10.152285 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 9ms · 人员 45ms · 身体 31ms
+10-13 22:35:25.828 30838 32226 I PasserWatch: inference=78ms fps=10.050251 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 12ms · 人员 37ms · 身体 28ms
+10-13 22:35:28.306 30838 32226 I PasserWatch: inference=85ms fps=10.183299 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 9ms · 人员 44ms · 身体 31ms
+10-13 22:35:30.722 30838 32226 I PasserWatch: inference=84ms fps=10.183299 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 13ms · 人员 43ms · 身体 27ms
+10-13 22:35:33.154 30838 32226 I PasserWatch: inference=70ms fps=10.660981 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 9ms · 人员 36ms · 身体 25ms
+10-13 22:35:35.565 30838 32226 I PasserWatch: inference=82ms fps=11.22449 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 12ms · 人员 52ms · 身体 16ms
+10-13 22:35:52.897 30838 11097 I PasserWatch: inference=94ms fps=9.836065 image=480x640 人脸 CPU / 人员 CPU / 身体 CPU 脸 13ms · 人员 47ms · 身体 33ms
+10-13 22:35:55.328 30838 11097 I PasserWatch: inference=86ms fps=10.0 image=480x640 人脸 CPU / 人员 CPU / 身体 CPU 脸 7ms · 人员 55ms · 身体 23ms
+10-13 22:35:57.562 30838 11097 I PasserWatch: inference=61ms fps=10.351967 image=480x640 人脸 CPU / 人员 CPU / 身体 CPU 脸 8ms · 人员 39ms · 身体 13ms
+10-13 22:35:59.907 30838 11097 I PasserWatch: inference=75ms fps=10.330579 image=480x640 人脸 CPU / 人员 CPU / 身体 CPU 脸 14ms · 人员 39ms · 身体 21ms
+10-13 22:36:02.487 30838 11097 I PasserWatch: inference=99ms fps=9.625669 image=480x640 人脸 CPU / 人员 CPU / 身体 CPU 脸 14ms · 人员 62ms · 身体 22ms
+10-13 22:36:05.585 30838 11324 W PasserWatch: Person GPU unavailable; falling back to CPU
+10-13 22:36:05.585 30838 11324 W PasserWatch: com.google.mediapipe.framework.MediaPipeException: invalid argument: CalculatorGraph::Run() failed: 
+10-13 22:36:05.585 30838 11324 W PasserWatch: Calculator::Process() for node "mediapipe_tasks_vision_objectdetectorgraph__mediapipe_tasks_core_inferencesubgraph__inferencecalculator__mediapipe_tasks_vision_objectdetectorgraph__mediapipe_tasks_core_inferencesubgraph__InferenceCalculator" failed: ToTensorConverter: input data size does not match expected size.
+10-13 22:36:05.585 30838 11324 W PasserWatch: 	at com.google.mediapipe.framework.Graph.nativeWaitUntilGraphIdle(Native Method)
+10-13 22:36:05.585 30838 11324 W PasserWatch: 	at com.google.mediapipe.framework.Graph.waitUntilGraphIdle(Graph.java:471)
+10-13 22:36:05.585 30838 11324 W PasserWatch: 	at com.google.mediapipe.tasks.core.TaskRunner.process(TaskRunner.java:107)
+10-13 22:36:05.585 30838 11324 W PasserWatch: 	at com.google.mediapipe.tasks.vision.core.BaseVisionTaskApi.processImageData(BaseVisionTaskApi.java:97)
+10-13 22:36:05.585 30838 11324 W PasserWatch: 	at com.google.mediapipe.tasks.vision.core.BaseVisionTaskApi.processImageData(BaseVisionTaskApi.java:80)
+10-13 22:36:05.585 30838 11324 W PasserWatch: 	at com.google.mediapipe.tasks.vision.objectdetector.ObjectDetector.detect(ObjectDetector.java:272)
+10-13 22:36:05.585 30838 11324 W PasserWatch: 	at com.google.mediapipe.tasks.vision.objectdetector.ObjectDetector.detect(ObjectDetector.java:248)
+10-13 22:36:05.585 30838 11324 W PasserWatch: 	at com.example.passerwatch.detection.PersonDetector.detect$lambda$10(PersonDetector.kt:64)
+10-13 22:36:05.585 30838 11324 W PasserWatch: 	at com.example.passerwatch.detection.PersonDetector.$r8$lambda$tFjM-ziLDgYlIYXu5Mc35gaC_3w(Unknown Source:0)
+10-13 22:36:05.585 30838 11324 W PasserWatch: 	at com.example.passerwatch.detection.PersonDetector$$ExternalSyntheticLambda8.invoke(D8$$SyntheticClass:0)
+10-13 22:36:05.585 30838 11324 W PasserWatch: 	at com.example.passerwatch.detection.AcceleratedTask.run(AcceleratedTask.kt:38)
+10-13 22:36:05.585 30838 11324 W PasserWatch: 	at com.example.passerwatch.detection.PersonDetector.detect(PersonDetector.kt:64)
+10-13 22:36:05.585 30838 11324 W PasserWatch: 	at com.example.passerwatch.camera.FrameAnalyzer.analyze(FrameAnalyzer.kt:58)
+10-13 22:36:05.585 30838 11324 W PasserWatch: 	at androidx.camera.core.ImageAnalysis.lambda$setAnalyzer$3(ImageAnalysis.java:573)
+10-13 22:36:05.585 30838 11324 W PasserWatch: 	at androidx.camera.core.ImageAnalysis$$ExternalSyntheticLambda4.analyze(D8$$SyntheticClass:0)
+10-13 22:36:05.585 30838 11324 W PasserWatch: 	at androidx.camera.core.ImageAnalysisAbstractAnalyzer.lambda$analyzeImage$0$androidx-camera-core-ImageAnalysisAbstractAnalyzer(ImageAnalysisAbstractAnalyzer.java:284)
+10-13 22:36:05.585 30838 11324 W PasserWatch: 	at androidx.camera.core.ImageAnalysisAbstractAnalyzer$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+10-13 22:36:05.585 30838 11324 W PasserWatch: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1156)
+10-13 22:36:05.585 30838 11324 W PasserWatch: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:651)
+10-13 22:36:05.585 30838 11324 W PasserWatch: 	at java.lang.Thread.run(Thread.java:1149)
+10-13 22:36:08.352 30838 11324 I PasserWatch: inference=78ms fps=10.976949 image=480x640 人脸 GPU / 人员 CPU（回退） / 身体 GPU 脸 8ms · 人员 46ms · 身体 23ms

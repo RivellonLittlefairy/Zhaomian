@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="过客哨 PasserWatch：旧 Android 手机检测有人出现并保存一张本地图片的项目设计与开发路线。">
+  <title>过客哨 · Android 项目设计</title>
+  <style>
+    :root{--bg:#f4f6f2;--paper:#fff;--ink:#20332d;--muted:#62716b;--brand:#176a53;--line:#dce5df;--soft:#edf5ef;--accent:#d4913b}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:24px}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Microsoft YaHei","PingFang SC",system-ui,sans-serif;font-size:16px;line-height:1.8}
+    a{color:var(--brand);text-underline-offset:4px}a:focus-visible{outline:3px solid var(--accent);outline-offset:4px}code{font-family:Consolas,monospace;overflow-wrap:anywhere;color:#245c47;background:var(--soft);padding:2px 5px;border-radius:4px}pre{background:#20332d;color:#e8f1ea;padding:20px;border-radius:12px;overflow:auto;line-height:1.65;font-size:14px}pre code{padding:0;background:none;color:inherit}
+    .wrap{max-width:1180px;margin:auto;padding:48px 28px 72px}.hero{padding:40px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(120deg,#fff 40%,#e8f3eb)}.eyebrow{font-size:13px;letter-spacing:2px;color:var(--brand);font-weight:700}.hero h1{font-size:clamp(34px,5vw,52px);line-height:1.3;margin:16px 0 6px}.subtitle{font-size:22px;margin:0 0 18px}.lead{max-width:760px;margin:0;color:var(--muted)}.chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px}.chip{background:#fff;border:1px solid var(--line);padding:3px 12px;border-radius:30px;font-size:13px}.meta{margin-top:24px;color:var(--muted);font-size:13px}
+    .layout{display:grid;grid-template-columns:210px minmax(0,1fr);gap:28px;margin-top:28px}nav{position:sticky;top:24px;align-self:start;border:1px solid var(--line);border-radius:16px;background:var(--paper);padding:18px}nav strong{display:block;margin-bottom:10px}nav a{display:block;text-decoration:none;padding:7px 0;font-size:14px}main{min-width:0}section{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:30px;margin-bottom:22px}h2{font-size:25px;line-height:1.5;margin:0 0 16px}h2 .num{color:var(--brand);font-size:14px;margin-right:10px}h3{font-size:18px;margin:24px 0 8px}p{margin:10px 0}ul,ol{padding-left:24px}li{margin:7px 0}.note{padding:16px 18px;background:var(--soft);border-left:4px solid var(--brand);border-radius:0 10px 10px 0;margin:18px 0}.notice{background:#fff6e7;border-color:var(--accent)}.small{font-size:14px;color:var(--muted)}.table-scroll{overflow:auto;margin:16px 0}table{width:100%;border-collapse:collapse;font-size:14px;min-width:580px}th,td{padding:13px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}th{background:var(--soft);color:#315948}td:first-child{font-weight:600}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:16px 0}.card{padding:18px;background:#f8faf7;border:1px solid var(--line);border-radius:12px}.card strong{display:block;color:var(--brand)}.flow{display:flex;flex-wrap:wrap;align-items:center;gap:9px;padding:20px;background:var(--soft);border-radius:12px;margin:18px 0}.node{background:#fff;border:1px solid #bdd2c3;padding:10px 14px;border-radius:8px;font-size:14px}.arrow{color:var(--brand);font-weight:700}.step{border-left:3px solid var(--line);padding-left:18px;margin:22px 0}.step h3{margin:0}.step p{margin:5px 0}.sources li{font-size:14px}.footer{font-size:13px;color:var(--muted);text-align:center;margin-top:22px}
+    @media(max-width:980px){.wrap{padding:20px 14px 40px}.hero{padding:26px 22px}.layout{grid-template-columns:1fr;gap:18px}nav{position:static;display:flex;flex-wrap:wrap;gap:4px 16px}nav strong{width:100%;margin-bottom:0}nav a{padding:3px 0}section{padding:22px 18px}.cards{grid-template-columns:1fr}.subtitle{font-size:18px}.flow{padding:14px}}
+    @media print{body{background:#fff;font-size:11pt}.wrap{max-width:none;padding:0}.hero{background:#fff;padding:20px;border-radius:0}.hero h1{font-size:30pt}.layout{display:block}nav{display:none}section{padding:18px 0;border:0;border-bottom:1px solid #ccc;border-radius:0;margin:0}h2,h3{break-after:avoid}.card,.note,.flow,tr{break-inside:avoid}pre{white-space:pre-wrap;background:#f5f5f5;color:#111;border:1px solid #ccc}pre code{color:inherit}a{color:#111}.table-scroll{overflow:visible}table{min-width:0;font-size:10pt}.footer{text-align:left}@page{size:A4;margin:16mm}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">ANDROID PROJECT / DESIGN v0.2</div>
+    <h1>过客哨 <span lang="en">PasserWatch</span></h1>
+    <p class="subtitle">有人出现，留下一张现场图片。</p>
+    <p class="lead">把旧 Android 手机固定摆放，让它持续观察相机画面。开始后一直检测：有人出现 → 保存一张 JPG → 继续观察 → 人离开后重新待命 → 下次有人出现再保存一张。</p>
+    <div class="chips"><span class="chip">本地识别</span><span class="chip">持续监测</span><span class="chip">每次出现一张</span><span class="chip">离线可用</span><span class="chip">Kotlin + CameraX</span></div>
+    <div class="meta">编写日期：2026-10-13 · 文档性质：建议设计，尚未创建 Android 工程或完成真机验证</div>
+  </header>
+  <div class="layout">
+    <nav aria-label="文档目录">
+      <strong>阅读目录</strong>
+      <a href="#scope">01 · 名称与第一版范围</a><a href="#experience">02 · 用户操作流程</a><a href="#stack">03 · 技术选型</a><a href="#pipeline">04 · 图像与识别流程</a><a href="#trigger">05 · 单张抓拍规则</a><a href="#storage">06 · 本地保存方式</a><a href="#modules">07 · 代码职责划分</a><a href="#roadmap">08 · 开发步骤</a><a href="#acceptance">09 · 验收与设备适配</a><a href="#future">10 · 后续扩展</a><a href="#sources">11 · 官方资料</a>
+    </nav>
+    <main>
+      <section id="scope">
+        <h2><span class="num">01</span>名称与第一版范围</h2>
+        <p><strong>中文名：过客哨。英文名：PasserWatch。</strong>“过客”对应相机前出现的人，“哨”表示持续观察。工程目录可用 <code>passer-watch</code>，App 显示名称使用“过客哨”。这是项目工作名，尚未做商标或应用商店重名检索。</p>
+        <div class="cards">
+          <div class="card"><strong>已确认的需求</strong><p>使用旧 Android 手机的相机一直运行；每次有人经过保存一张本地图片，保存后继续检测；当前先不处理推送和另一台手机的接收。</p></div>
+          <div class="card"><strong>截图去重规则</strong><p>一次有人出现只保存一张，人一直停留时不重复保存。确认画面持续无人后自动重新待命，下一次有人出现再保存；不需要手动重新开始。</p></div>
+        </div>
+        <p>这里先把“有人经过”落实为<strong>画面里确认有人出现</strong>：如果启动时已经有人，也会触发。第一版不判断移动方向、不跨线计数、不识别身份；这些需要额外的事件规则或目标跟踪。</p>
+        <div class="note">本版只做相机预览、人员检测、单张保存和最近图片查看。不需要服务器、推送服务、网络请求、录像或数据库。模型随 APK 打包，运行时可以断网。</div>
+        <p class="small">运行方式暂按 App 保持前台、检测时屏幕亮着设计。后台和锁屏持续检测属于下一阶段，不能把前台演示当作已验证的全天运行方案。</p>
+      </section>
+      <section id="experience">
+        <h2><span class="num">02</span>用户操作流程</h2>
+        <ol>
+          <li><strong>打开 App：</strong>申请相机权限，展示后置相机预览；未授权时显示说明和重新授权入口。</li>
+          <li><strong>摆放手机：</strong>调整位置，让要观察的区域在画面内；第一版默认检测整个画面。</li>
+          <li><strong>点击“开始检测”：</strong>启动持续监测，显示“等待有人出现”；检测期间保持屏幕亮着。</li>
+          <li><strong>确认有人：</strong>满足连续确认规则后保存触发帧，显示“正在保存”。</li>
+          <li><strong>保存成功：</strong>显示缩略图和保存时间，相机与人员检测继续运行；当前这次出现不重复保存。</li>
+          <li><strong>自动等待下一次：</strong>确认人已离开后重新待命，下次有人出现再截图。点击缩略图可查看图片；只有用户点“停止检测”才主动结束监测。</li>
+        </ol>
+        <p>页面先放四个元素：相机预览、开始/停止按钮、当前状态、最近图片。人员框作为开发调试叠层即可，保存的原图默认不包含按钮或检测框。</p>
+        <p class="small">默认不播放声音、不振动、不弹报警通知；保存结果在页面上显示。</p>
+      </section>
+      <section id="stack">
+        <h2><span class="num">03</span>技术选型</h2>
+        <div class="table-scroll"><table>
+          <thead><tr><th>部分</th><th>推荐选择</th><th>它负责什么</th></tr></thead>
+          <tbody>
+            <tr><td>语言与界面</td><td>Kotlin + Fragment + XML</td><td>搭建预览、控制按钮和最近图片。先使用常规 Android 页面结构。</td></tr>
+            <tr><td>相机</td><td>CameraX：Preview、ImageAnalysis</td><td>Preview 显示画面，ImageAnalysis 提供可分析的相机帧。</td></tr>
+            <tr><td>人员检测</td><td>MediaPipe Tasks Vision / Object Detector</td><td>加载本地模型，输出目标类别、分数和边界框；只保留 person。</td></tr>
+            <tr><td>模型起点</td><td>EfficientDet-Lite0，int8，CPU</td><td>采用官方提供的兼容模型，先验证目标设备能否稳定运行。</td></tr>
+            <tr><td>异步处理</td><td>单线程 Analyzer + Kotlin 协程</td><td>串行处理检测结果；磁盘压缩和写入放在 IO 线程。</td></tr>
+            <tr><td>状态管理</td><td>ViewModel + StateFlow</td><td>分别管理持续监测状态与图片保存状态，并传给页面。</td></tr>
+            <tr><td>本地图片</td><td>Bitmap → JPEG → filesDir/captures</td><td>保存相机触发帧，并在 App 内直接查看。</td></tr>
+          </tbody>
+        </table></div>
+        <p>MediaPipe 是调用模型的工具，EfficientDet-Lite0 是判断画面内容的模型。模型原本支持多种目标，本项目只筛选 <code>person</code>；根据实际模型标签设置允许列表，不把类别编号写死。官方模型说明提供 Lite0 的 320 × 320 输入和 int8 版本。<a href="https://developers.google.com/edge/mediapipe/solutions/vision/object_detector#models">[模型资料]</a></p>
+        <p>当前 MediaPipe Android 设置指南要求最低 SDK 24，因此本路线以 <strong>Android 7.0 / API 24 及以上</strong>作为起点。创建工程前还要核对选定依赖的最低版本、旧手机的系统版本和 CPU ABI；不能只凭系统版本保证模型可运行。<a href="https://developers.google.com/edge/mediapipe/solutions/setup_android">[环境要求]</a></p>
+        <div class="note notice">这里给出技术方向，不虚构已测试的依赖组合。开始实现时选取互相兼容的固定版本，记录 CameraX、MediaPipe 和模型文件版本；不用动态 latest.release 保证构建结果可复现。</div>
+        <h3>为什么先选这一条路线</h3>
+        <p>OpenCV 帧差可以判断“画面变了”，但灯光、树叶也会触发，不能直接证明有人。云端识别需要上传画面和网络服务。现成端侧目标检测更贴合当前的本地单张抓拍需求。</p>
+        <p>如果旧手机运行 Lite0 太慢，再比较官方 SSD MobileNetV2 等更轻模型；换模型前用同一组现场画面对比漏检、误检和耗时，不能只看别的设备上的跑分。</p>
+      </section>
+      <section id="pipeline">
+        <h2><span class="num">04</span>图像与识别流程</h2>
+        <div class="flow" role="img" aria-label="数据流程：相机帧、节流和复制、人员检测、事件规则、保存JPG、更新界面">
+          <span class="node">相机帧</span><span class="arrow" aria-hidden="true">→</span><span class="node">节流 / 复制</span><span class="arrow" aria-hidden="true">→</span><span class="node">检测 person</span><span class="arrow" aria-hidden="true">→</span><span class="node">触发规则</span><span class="arrow" aria-hidden="true">→</span><span class="node">保存 JPG</span><span class="arrow" aria-hidden="true">→</span><span class="node">显示结果</span>
+        </div>
+        <h3>1. 持续预览，按需分析</h3>
+        <p>相机预览保持连续，识别先尝试每秒最多处理 5 帧。节流只是限制分析频率，不代表相机采集也降到了 5 FPS；如果模型较慢，实际检测频率会更低。使用 <code>STRATEGY_KEEP_ONLY_LATEST</code>，避免旧帧排队造成越来越大的延迟。<a href="https://developer.android.com/media/camera/camerax/analyze">[CameraX 图像分析]</a></p>
+        <h3>2. 第一版先用同步检测，跑在后台线程</h3>
+        <p>在单线程 Analyzer 中，把采样帧复制为应用持有的 Bitmap，再用 MediaPipe 的 <code>IMAGE</code> 模式逐张检测。虽然输入来自连续相机流，逐帧同步调用仍可用于这版小范围实现；它简化了结果与原图的对应关系。后续需要提高流水线效率时，再改为 <code>LIVE_STREAM</code>。</p>
+        <p>复制时要正确处理格式、旋转角度及裁剪信息，输出保存方向与用户看到的画面方向一致。第一版用后置相机，减少前置镜像的适配问题。CameraX 帧和预览可能存在裁剪差异，调试框需要额外的坐标映射。</p>
+        <h3>3. 用识别的那一帧生成图片</h3>
+        <p>“截图”在这里指<strong>保存相机图像帧</strong>，不是截整个手机屏幕。触发时保留当前帧的独立副本，交给保存模块写 JPG，因此图片不会包含 App 控件，也不需要屏幕录制权限。</p>
+        <p>第一版无需额外接 CameraX <code>ImageCapture</code>。它能另拍高分辨率照片，但那是较晚的另一帧，快速经过的人可能已经走开；当前直接保存检测触发帧更符合需求。</p>
+        <div class="note">不把模型缩小后的 320 × 320 输入图当作唯一存档。保留分析帧的原始尺寸副本；可先尝试约 640 × 480 的分析分辨率，实际尺寸以 CameraX 返回为准，截图清晰度要在旧手机上检查。</div>
+        <h3>4. 管好图像资源</h3>
+        <p>每个 <code>ImageProxy</code> 都要在 <code>finally</code> 中关闭，跳过帧或发生异常也一样。必须先完成必要的复制，再释放相机帧。用于保存的 Bitmap 要独立于检测缓冲区，不能在磁盘写入完成前被复用或回收。</p>
+        <p class="small">如果以后改成异步检测，需通过时间戳关联结果与输入帧，限制在途帧数量，并在回调完成后释放对应副本。不能拿异步结果去保存无关的“当前最新帧”。</p>
+      </section>
+      <section id="trigger">
+        <h2><span class="num">05</span>单张抓拍规则</h2>
+        <p><strong>第一版采用“连续确认 + 每次出现一张 + 离开后自动重新待命”。</strong>满足条件后先将当前出现事件标记为已触发，再异步保存。保存图片不会停止相机或图像分析，也不会把同一个人的持续停留反复存成多张。</p>
+        <div class="table-scroll"><table>
+          <thead><tr><th>参数</th><th>建议起点</th><th>含义</th></tr></thead>
+          <tbody>
+            <tr><td>分析频率</td><td>最多 5 帧 / 秒</td><td>控制推理次数；根据实际处理耗时调整。</td></tr>
+            <tr><td>识别分数阈值</td><td>0.6</td><td>只使用高于阈值的 person 结果；这不是“准确率 60%”。</td></tr>
+            <tr><td>连续确认</td><td>连续 2 个已处理帧检测到人</td><td>中间出现有效的无人结果就清零；处理结果间隔超过 1 秒也清零。</td></tr>
+            <tr><td>每次出现图片数量</td><td>1 张</td><td>确认帧中同时有多人，也只保存一张完整画面；停留期间不追加。</td></tr>
+            <tr><td>离开确认</td><td>持续无人至少 2 秒</td><td>由有效检测结果确认；再次检测到人即重置无人计时。</td></tr>
+            <tr><td>再次触发</td><td>自动重新待命</td><td>离开确认通过后，下一次有人出现再保存一张，不需要再次点击开始。</td></tr>
+          </tbody>
+        </table></div>
+        <p class="small">以上均为调试初值，尚未经过现场测试。连续确认能减少偶发误检，也可能漏掉极快经过的人；不能用这组数字承诺识别准确率或固定响应时间。</p>
+        <pre><code>监测状态（相机与检测持续工作）：
+未开始 → 等待有人 → 已触发，等待人离开
+               ↑                │
+               └── 持续无人 2 秒 ──┘
+
+每次触发的保存任务（独立进行）：
+保留触发帧 → 排队 / 正在保存 → 已保存或保存失败
+
+用户停止 / 离开前台页面 → 结束当前监测会话</code></pre>
+        <p>启动时清空确认计数。触发一次后，无论保存是否已完成，检测仍持续工作，事件状态保持“等待人离开”。画面持续无人至少 2 秒后自动恢复“等待有人”；短暂漏检不会立即重新抓拍。检测结果间隔超过 1 秒时重置无人确认计时，不能把没有处理到帧、模型异常或相机中断当成人已经离开。</p>
+        <p><strong>典型过程：</strong>A 走进画面 → 保存第 1 张 → A 停留时不追加 → A 离开且画面持续无人 2 秒 → B 走进画面 → 保存第 2 张。整个过程相机和识别没有停，也不用再次点击开始。</p>
+        <p>这是按“画面里一次有人出现”去重。如果 A 还在画面里，B 又走进来，第一版不会单独给 B 再拍；两次出现之间的无人间隔不足 2 秒也可能合并。要做到每一个经过的人都单独截图，需要增加目标跟踪和跨线规则。</p>
+        <p>监测状态与保存状态分开管理。磁盘写入串行执行，最多保留 1 张正在写入和 2 张等待写入的独立图像；队列满时显示保存过载、释放多余副本，不无限堆积内存。停止或离开页面后拒绝旧会话的新触发，已经接收的有限保存任务完成后收尾。</p>
+        <p>写入失败时显示原因，当前事件仍标记为已触发，避免对同一场景无限重拍；下一次出现仍按规则处理。存储不足时仅暂停保存，人员检测继续，释放空间后由用户恢复保存；暂停期间错过的图片不补存。写入成功之前，不显示“已保存”。</p>
+      </section>
+      <section id="storage">
+        <h2><span class="num">06</span>本地保存方式</h2>
+        <p>第一版建议写入内部持久文件目录 <code>filesDir/captures/</code>，每次有人出现生成一个独立 JPG，持续运行会累积多张图片。它不依赖外部存储权限，App 可以直接打开；卸载 App 或清除数据会删除这些图片，系统相册默认不会展示。<a href="https://developer.android.com/training/data-storage/app-specific">[应用专属文件]</a></p>
+        <pre><code>filesDir/
+└── captures/
+    ├── capture_20261013_153025_481_&lt;event-id&gt;.jpg
+    └── capture_20261013_154112_096_&lt;event-id&gt;.jpg</code></pre>
+        <ul>
+          <li><strong>文件命名：</strong>本地时间加唯一事件 ID，避免连续事件或系统时间变化时覆盖原图。</li>
+          <li><strong>保存格式：</strong>JPEG，质量先取 90；完成旋转后压缩，完整画面不裁切到人脸。</li>
+          <li><strong>写入过程：</strong>IO 线程先写临时文件，确认压缩成功、关闭输出流，再在同目录重命名为最终 JPG；失败时清理临时文件。</li>
+          <li><strong>界面显示：</strong>保存成功后显示最新图片、时间和本次监测已保存数量，监测继续。重新进入页面时扫描 JPG 文件，按保存顺序恢复最近图片。</li>
+          <li><strong>存储不足：</strong>明确提示保存暂停，继续人员检测但不反复尝试写盘；释放空间后手动恢复保存。当前版本不自动删除旧图。</li>
+        </ul>
+        <div class="note">第一版只需要文件保存和最近图片查看，无需 Room。以后增加事件列表、筛选或上传状态时，再加数据库。需要“系统相册里也能看见”时，增加显式导出到 MediaStore；不要把缓存目录当作长期存档。</div>
+        <p class="small">一张图的体积取决于尺寸、内容和压缩质量，当前不预估固定占用量。真机验证时记录实际文件大小。</p>
+      </section>
+      <section id="modules">
+        <h2><span class="num">07</span>代码职责划分</h2>
+        <p>先用一个 <code>app</code> 模块，按职责分文件。无需一开始拆 Gradle 多模块或搭复杂依赖注入框架。</p>
+        <pre><code>app/src/main/
+├── assets/                 # 固定版本的本地模型
+├── java/&lt;application-package&gt;/
+│   ├── MainActivity.kt
+│   ├── ui/
+│   │   ├── CameraFragment.kt
+│   │   └── CameraViewModel.kt
+│   ├── camera/
+│   │   ├── CameraController.kt
+│   │   └── FrameAnalyzer.kt
+│   ├── detection/
+│   │   └── PersonDetector.kt
+│   ├── capture/
+│   │   ├── CaptureGate.kt
+│   │   └── SnapshotStore.kt
+│   └── model/
+│       └── MonitorState.kt
+└── res/layout/             # 预览与最近图片界面</code></pre>
+        <div class="table-scroll"><table>
+          <thead><tr><th>对象</th><th>职责与边界</th></tr></thead>
+          <tbody>
+            <tr><td>CameraFragment</td><td>处理授权、按钮和预览；通过 viewLifecycleOwner 收集状态，在 onDestroyView 清理 Binding。</td></tr>
+            <tr><td>CameraViewModel</td><td>管理页面状态和最近图片信息，不持有 Fragment View、Binding 或相机画面控件。</td></tr>
+            <tr><td>CameraController</td><td>绑定和释放 CameraX；前台版本绑定 View 生命周期，离开页面停止采集和分析。</td></tr>
+            <tr><td>FrameAnalyzer</td><td>节流、复制帧、旋转、调用检测，并保证 ImageProxy 释放。</td></tr>
+            <tr><td>PersonDetector</td><td>加载模型，筛选 person，返回检测分数和框；模型不可用时回报错误。</td></tr>
+            <tr><td>CaptureGate</td><td>连续确认、每次出现一次、离开后自动重新待命、监测会话检查；不负责 UI 或文件写入。</td></tr>
+            <tr><td>SnapshotStore</td><td>接收独立图像副本，保存文件、返回结果、读取最近图片；不访问相机。</td></tr>
+          </tbody>
+        </table></div>
+        <p>结果按单线程顺序交给 CaptureGate，图片交给有界队列在 IO 调度器中串行保存。拍完不解绑相机、不清除 Analyzer、不停止检测；界面同时显示监测状态和最近保存结果。页面停止后拒绝旧监测会话的新结果，已经接收的有限保存任务完成后收尾；返回页面重新读取图片。程序被系统杀掉时不保证写入完成，重启时忽略并清理残留临时文件。</p>
+      </section>
+      <section id="roadmap">
+        <h2><span class="num">08</span>开发步骤</h2>
+        <div class="step"><h3>步骤 1 · 工程与相机预览</h3><p>核对旧手机系统和 ABI，创建 Kotlin 工程，接 CameraX、权限请求和后置预览。</p><p class="small">验收：允许权限后出现实时画面；拒绝权限不崩溃；退出再进入可重新打开相机。</p></div>
+        <div class="step"><h3>步骤 2 · 单张本地保存</h3><p>暂用开发用的手动按钮保存当前分析帧，打通 Bitmap、旋转、JPEG 写入和最近图片展示。</p><p class="small">验收：每次手动保存产生一张能打开、方向正确的 JPG；确认这不是屏幕截图。</p></div>
+        <div class="step"><h3>步骤 3 · 接入人员检测</h3><p>将官方兼容模型放入 assets，初始化检测器，先用静态图片验证，再接节流后的相机帧；用调试框检查结果。</p><p class="small">验收：现场人像可返回 person；空场、物品和灯光变化用来观察误检；断网仍可工作。</p></div>
+        <div class="step"><h3>步骤 4 · 持续检测与自动抓拍</h3><p>接入出现确认、每次出现一次和离开后自动重新待命的状态机，将检测连接到保存链路；保存和监测独立运行。</p><p class="small">验收：A 出现保存一张，停留不追加；离开确认后 B 出现自动保存第二张；全过程无需手动重新开始，保存期间检测继续。</p></div>
+        <div class="step"><h3>步骤 5 · 失败处理与前台稳定性</h3><p>补齐存储不足、模型加载失败、相机被占用、停止操作和页面离开处理。记录推理耗时、图片大小和运行中的发热情况。</p><p class="small">验收：失败有明确状态；前台运行至少 30 分钟，无崩溃、持续积压或明显内存增长。这个结果不能替代锁屏测试。</p></div>
+        <p><strong>实际动手的第一步：</strong>确认旧手机型号、Android 版本与可用存储，然后先完成“看到画面 + 手动保存一张”，再加模型。</p>
+      </section>
+      <section id="acceptance">
+        <h2><span class="num">09</span>验收与设备适配</h2>
+        <div class="table-scroll"><table>
+          <thead><tr><th>测试场景</th><th>预期或记录内容</th></tr></thead>
+          <tbody>
+            <tr><td>空画面、椅子、灯光变化</td><td>不因单次检测波动就保存；记录是否发生误触发。</td></tr>
+            <tr><td>正面、侧身、背影进入</td><td>出现稳定检测后保存一张；逐项记录成功或漏检，不用“支持人形”代替实际测试。</td></tr>
+            <tr><td>启动时画面已经有人</td><td>允许触发一张，符合本版“有人出现/存在”的定义。</td></tr>
+            <tr><td>人持续停留、多人同框</td><td>本次出现只留下一个 JPG；继续检测，等待离开确认。</td></tr>
+            <tr><td>A 离开，之后 B 进入</td><td>画面持续无人至少 2 秒后自动重新待命；B 出现时再存一张，不需要手动开始。</td></tr>
+            <tr><td>短暂漏检、检测暂停或异常</td><td>不把短暂无人或没有检测结果当作离开，不立即重复截图。</td></tr>
+            <tr><td>快速经过、暗光、遮挡</td><td>记录漏检和模糊程度；这是现场限制，可能需要改机位、照明或确认规则。</td></tr>
+            <tr><td>保存中继续检测、停止与页面离开</td><td>写入不停止检测；新会话不接受旧结果；待写队列有界，停止后已有任务收尾。</td></tr>
+            <tr><td>重启 App、存储不足</td><td>恢复最近图片；存储不足暂停写入但继续检测，恢复保存有明确入口；临时文件不作为有效图片展示。</td></tr>
+            <tr><td>断网与长时间前台运行</td><td>识别和保存不依赖网络；记录实测频率、耗时、内存、温度变化。</td></tr>
+          </tbody>
+        </table></div>
+        <h3>最有价值的自动测试</h3>
+        <p>只优先测试事件规则：用固定检测序列证明单次阳性不触发、连续确认后只触发一次、持续停留不追加、短暂漏检不重新待命、有效无人持续 2 秒后下一次出现可以再次触发；没有结果或检测异常不能充当无人证据。另检查保存任务不阻塞监测、队列有界、旧会话结果被忽略。模型效果、画面方向和设备性能用真机及现场图像验证。</p>
+        <div class="note notice">旧手机型号、Android 版本、实际机位和光照尚未提供。这些不影响文档成立，但会影响依赖兼容性与识别效果。本文不声称已经完成性能、准确率或后台运行验证。</div>
+      </section>
+      <section id="future">
+        <h2><span class="num">10</span>后续扩展</h2>
+        <ul>
+          <li><strong>抓拍策略调整：</strong>在本版持续监测的基础上，增加可配置的离开确认时长、重复抓拍间隔或定时监测。</li>
+          <li><strong>指定区域：</strong>只监测门口或走廊的一部分，降低无关目标触发。</li>
+          <li><strong>真正的经过判断：</strong>增加跟踪与跨线规则，用轨迹判断经过方向。</li>
+          <li><strong>图片管理：</strong>历史列表、删除、导出到系统相册；需要查询元数据时再引入 Room。</li>
+          <li><strong>锁屏和后台：</strong>用 camera 类型前台服务管理相机，与页面预览分开；从可见页面启动，配置对应权限与系统通知，再进行目标设备锁屏测试。不能直接沿用 Fragment View 生命周期绑定。<a href="https://developer.android.com/develop/background-work/services/fgs/service-types#camera">[前台服务要求]</a></li>
+          <li><strong>另一台手机接收：</strong>在“图片已经保存”事件后接推送或上传，当前第一版不包含这一链路。</li>
+        </ul>
+      </section>
+      <section id="sources">
+        <h2><span class="num">11</span>官方资料与证据边界</h2>
+        <p>技术机制以以下官方说明为依据，查阅日期为 2026-10-13。本文中的帧率、阈值、出现确认次数、离开确认时长、保存队列容量、目录组织和开发顺序是本项目建议，不是官方默认值或实测结果。</p>
+        <ol class="sources">
+          <li><a href="https://developer.android.com/media/camera/camerax/analyze">CameraX Image analysis</a>：分析帧、背压策略、ImageProxy 释放与生命周期绑定。</li>
+          <li><a href="https://developers.google.com/edge/mediapipe/solutions/vision/object_detector/android">MediaPipe Object Detector · Android</a>：模型接入、IMAGE / VIDEO / LIVE_STREAM 模式及检测输出。</li>
+          <li><a href="https://developers.google.com/edge/mediapipe/solutions/vision/object_detector#models">MediaPipe Object Detector · Models</a>：EfficientDet-Lite0 和其他兼容模型的输入与取舍。</li>
+          <li><a href="https://developers.google.com/edge/mediapipe/solutions/setup_android">MediaPipe Android setup</a>：最低 SDK、端侧依赖与 CPU / GPU delegate。</li>
+          <li><a href="https://developer.android.com/training/data-storage/app-specific">Android app-specific files</a>：内部文件存储与数据生命周期。</li>
+          <li><a href="https://developer.android.com/develop/background-work/services/fgs/service-types#camera">Camera foreground service</a>：后台相机的服务类型和启动限制。</li>
+        </ol>
+      </section>
+    </main>
+  </div>
+  <footer class="footer">过客哨 · PasserWatch · 持续监测与本地抓拍设计 · 2026-10-13<br>独立 HTML 文档，无外部字体、图片或脚本依赖，可离线阅读和打印。</footer>
+</div>
+</body>
+</html>
