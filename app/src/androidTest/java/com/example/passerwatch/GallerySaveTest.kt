@@ -39,7 +39,7 @@ class GallerySaveTest {
                 MediaStore.Images.Media.RELATIVE_PATH), null, null, null)!!.use {
                 assertTrue(it.moveToFirst())
                 assertEquals(0, it.getInt(0))
-                assertEquals("Pictures/PasserWatch/", it.getString(1))
+                assertEquals("Pictures/Zhaomian/", it.getString(1))
             }
             context.contentResolver.openInputStream(uri)!!.use { input ->
                 val decoded = BitmapFactory.decodeStream(input)!!

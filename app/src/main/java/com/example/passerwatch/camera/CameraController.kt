@@ -144,7 +144,7 @@ class CameraController(
                     mainExecutor.execute {
                         if (!disposed && token == generation && evidence != lastEvidence) {
                             lastEvidence = evidence; onLensEvidence(evidence)
-                            Log.i("PasserWatch", "auto lens=${target.key} base=${target.baseZoom} requested=$desiredZoom logicalActive=$actual physicalResults=${physical.keys} focal=$focal")
+                            Log.i("Zhaomian", "auto lens=${target.key} base=${target.baseZoom} requested=$desiredZoom logicalActive=$actual physicalResults=${physical.keys} focal=$focal")
                         }
                     }
                 }
@@ -189,11 +189,11 @@ class CameraController(
             zoomState = camera.cameraInfo.zoomState; zoomObserver = zoomListener
             zoomState?.observe(owner!!, zoomListener)
             applyNativeZoom()
-            Log.i("PasserWatch", "auto bind lens=${target.key} opticalScale=${target.baseZoom} globalZoom=$desiredZoom analysis=${a.resolutionInfo?.resolution} photo=${c.resolutionInfo?.resolution}")
+            Log.i("Zhaomian", "auto bind lens=${target.key} opticalScale=${target.baseZoom} globalZoom=$desiredZoom analysis=${a.resolutionInfo?.resolution} photo=${c.resolutionInfo?.resolution}")
         } catch (e: Exception) {
             if (target.physicalId != null) {
                 unavailable.add(target.key)
-                Log.w("PasserWatch", "physical auto lens unavailable; using logical camera", e)
+                Log.w("Zhaomian", "physical auto lens unavailable; using logical camera", e)
                 bindLens(policy!!.fallback)
             } else { ready(false); error("相机启动失败：${e.message}") }
         }
@@ -278,7 +278,7 @@ class CameraController(
                                 if (source !== rotatedSource) source.recycle()
                                 val rotated = DigitalZoom.cropOwned(rotatedSource, photoCrop)
                                 owned = rotated
-                                Log.i("PasserWatch", "photo captured=${rotated.width}x${rotated.height} session=$sessionId")
+                                Log.i("Zhaomian", "photo captured=${rotated.width}x${rotated.height} session=$sessionId")
                                 captured(sessionId, rotated)
                                 owned = null // ownership transferred to the save queue
                             } catch (e: Exception) { captureError("拍照处理失败：${e.message}") }

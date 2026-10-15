@@ -3,7 +3,7 @@ package com.example.passerwatch.ui
 import android.app.Application
 import android.graphics.Bitmap
 import androidx.lifecycle.AndroidViewModel
-import com.example.passerwatch.PasserWatchApplication
+import com.example.passerwatch.ZhaomianApplication
 import com.example.passerwatch.camera.OwnedFrame
 import com.example.passerwatch.capture.CaptureGate
 import com.example.passerwatch.capture.CaptureRepository
@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.update
 
 class MonitorViewModel @JvmOverloads constructor(
     application: Application,
-    private val captures: CaptureRepository = (application as PasserWatchApplication).captures
+    private val captures: CaptureRepository = (application as ZhaomianApplication).captures
 ) : AndroidViewModel(application) {
     val storage = captures.state
     val records = captures.records

@@ -25,13 +25,13 @@ class PersonDetector(
     private fun base(path: String, backend: InferenceBackend) = BaseOptions.builder()
         .setModelAssetPath(path).setDelegate(if (backend == InferenceBackend.GPU) Delegate.GPU else Delegate.CPU).build()
     private val faceTask = AcceleratedTask<FaceDetector>(preferGpu,
-        onFallback = { Log.w("PasserWatch", "Face GPU unavailable; falling back to CPU", it) }) { backend ->
+        onFallback = { Log.w("Zhaomian", "Face GPU unavailable; falling back to CPU", it) }) { backend ->
         FaceDetector.createFromOptions(app, FaceDetector.FaceDetectorOptions.builder()
             .setBaseOptions(base("blaze_face_short_range.tflite", backend))
             .setRunningMode(RunningMode.IMAGE).setMinDetectionConfidence(settings.scoreThreshold).build())
     }
     private val personTask = AcceleratedTask<ObjectDetector>(preferGpu,
-        onFallback = { Log.w("PasserWatch", "Person GPU unavailable; falling back to CPU", it) }) { backend ->
+        onFallback = { Log.w("Zhaomian", "Person GPU unavailable; falling back to CPU", it) }) { backend ->
         // The advanced GPU path consumes float input buffers; the int8 model has UINT8 input.
         // Keep the smaller quantized model for CPU, including GPU failure fallback.
         val model = if (backend == InferenceBackend.GPU) "efficientdet_lite0_float16.tflite"
@@ -43,11 +43,11 @@ class PersonDetector(
         // GPU returns all classes; detect() below filters person in Kotlin.
         if (backend == InferenceBackend.CPU) options.setCategoryAllowlist(listOf("person"))
         ObjectDetector.createFromOptions(app, options.build()).also {
-                Log.i("PasserWatch", "Person model created: backend=$backend asset=$model")
+                Log.i("Zhaomian", "Person model created: backend=$backend asset=$model")
             }
     }
     private val poseTask = AcceleratedTask<PoseLandmarker>(preferGpu,
-        onFallback = { Log.w("PasserWatch", "Pose GPU unavailable; falling back to CPU", it) }) { backend ->
+        onFallback = { Log.w("Zhaomian", "Pose GPU unavailable; falling back to CPU", it) }) { backend ->
         PoseLandmarker.createFromOptions(app, PoseLandmarker.PoseLandmarkerOptions.builder()
             .setBaseOptions(base("pose_landmarker_lite.task", backend))
             .setRunningMode(RunningMode.IMAGE).setNumPoses(2)

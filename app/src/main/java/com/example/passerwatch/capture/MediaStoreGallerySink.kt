@@ -19,13 +19,16 @@ class MediaStoreGallerySink(context: Context) : GallerySink {
         val selection: String
         val selectionArgs: Array<String>
         if (Build.VERSION.SDK_INT >= 29) {
-            selection = "${MediaStore.Images.Media.DISPLAY_NAME} = ? AND ${MediaStore.Images.Media.RELATIVE_PATH} = ? AND ${MediaStore.Images.Media.IS_PENDING} = 0"
-            selectionArgs = arrayOf(name, "${Environment.DIRECTORY_PICTURES}/PasserWatch/")
+            // Keep old captures discoverable after the app's rename.
+            selection = "${MediaStore.Images.Media.DISPLAY_NAME} = ? AND ${MediaStore.Images.Media.RELATIVE_PATH} IN (?, ?) AND ${MediaStore.Images.Media.IS_PENDING} = 0"
+            selectionArgs = arrayOf(name, "${Environment.DIRECTORY_PICTURES}/Zhaomian/",
+                "${Environment.DIRECTORY_PICTURES}/PasserWatch/")
         } else {
             @Suppress("DEPRECATION") val dataColumn = MediaStore.Images.Media.DATA
-            @Suppress("DEPRECATION") val file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "PasserWatch/$name")
-            selection = "$dataColumn = ?"
-            selectionArgs = arrayOf(file.absolutePath)
+            @Suppress("DEPRECATION") val file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "Zhaomian/$name")
+            @Suppress("DEPRECATION") val legacy = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "PasserWatch/$name")
+            selection = "$dataColumn IN (?, ?)"
+            selectionArgs = arrayOf(file.absolutePath, legacy.absolutePath)
         }
         resolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
             arrayOf(MediaStore.Images.Media._ID), selection, selectionArgs, null)?.use { cursor ->
@@ -41,12 +44,12 @@ class MediaStoreGallerySink(context: Context) : GallerySink {
             put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis())
         }
         if (Build.VERSION.SDK_INT >= 29) {
-            values.put(MediaStore.Images.Media.RELATIVE_PATH, "${Environment.DIRECTORY_PICTURES}/PasserWatch")
+            values.put(MediaStore.Images.Media.RELATIVE_PATH, "${Environment.DIRECTORY_PICTURES}/Zhaomian")
             values.put(MediaStore.Images.Media.IS_PENDING, 1)
         } else {
             if (ContextCompat.checkSelfPermission(app, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
                 throw SecurityException("请授予相册保存权限")
-            @Suppress("DEPRECATION") val folder = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "PasserWatch")
+            @Suppress("DEPRECATION") val folder = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "Zhaomian")
             if (!folder.exists() && !folder.mkdirs()) throw IOException("无法创建相册目录")
             @Suppress("DEPRECATION") val dataColumn = MediaStore.Images.Media.DATA
             values.put(dataColumn, File(folder, name).absolutePath)

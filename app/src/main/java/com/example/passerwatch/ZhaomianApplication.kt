@@ -7,6 +7,6 @@ import com.example.passerwatch.capture.GalleryPublisher
 import com.example.passerwatch.capture.MediaStoreGallerySink
 import java.io.File
 
-class PasserWatchApplication : Application() {
+class ZhaomianApplication : Application() {
     val captures by lazy { CaptureRepository(SnapshotStore(File(filesDir, "captures"), GalleryPublisher(MediaStoreGallerySink(this)))) }
 }

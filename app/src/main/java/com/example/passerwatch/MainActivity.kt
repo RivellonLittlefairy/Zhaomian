@@ -6,13 +6,13 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.SystemBarStyle
 import com.example.passerwatch.ui.MonitorScreen
-import com.example.passerwatch.ui.theme.PasserWatchTheme
+import com.example.passerwatch.ui.theme.ZhaomianTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge(statusBarStyle = SystemBarStyle.dark(android.graphics.Color.TRANSPARENT),
             navigationBarStyle = SystemBarStyle.dark(android.graphics.Color.BLACK))
-        setContent { PasserWatchTheme { MonitorScreen() } }
+        setContent { ZhaomianTheme { MonitorScreen() } }
     }
 }

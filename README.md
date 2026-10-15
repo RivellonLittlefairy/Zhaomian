@@ -1,6 +1,8 @@
-<h1>过客哨 · PasserWatch</h1>
+<h1>照面 · Zhaomian</h1>
 
 <p>将 Android 手机用作前台人员监测与自动抓拍设备。项目使用 Kotlin、Jetpack Compose、CameraX 和 MediaPipe，本地完成识别，无需云端推理服务。</p>
+
+<p><a href="https://github.com/RivellonLittlefairy/Zhaomian">GitHub 仓库</a> · 原名“过客哨”。更名后沿用原安装包 ID <code>com.example.passerwatch</code>，支持覆盖升级并保留原有 App 数据。新照片写入 <code>Pictures/Zhaomian</code>，旧 <code>Pictures/PasserWatch</code> 中的照片仍可查找。</p>
 
 <h2>主要功能</h2>
 
@@ -9,7 +11,7 @@
   <li>条件抓拍：检测到可见人脸，或满足完整身体规则时触发；完整身体场景允许脸部模糊。</li>
   <li>持续监测：同一次有人经过只抓拍一次，确认人员离开后重新等待下一次经过。</li>
   <li>高清照片：检测使用较小图像，触发后通过独立拍照通道获取照片。</li>
-  <li>相册查看：照片写入系统 Pictures/PasserWatch，App 内保留查看副本。</li>
+  <li>相册查看：照片写入系统 Pictures/Zhaomian，App 内保留查看副本。</li>
   <li>镜头与缩放：根据设备支持情况选择镜头并调整缩放。</li>
   <li>检测设置：可调整目标分析帧率、置信度、连续确认帧数和离开确认时间。</li>
   <li>本地加速：模型优先尝试 GPU，支持在可恢复的 GPU 错误下回退 CPU。</li>
@@ -58,7 +60,7 @@
   <li>打开实时页面，选择合适的镜头、缩放和摆放角度。</li>
   <li>点击“开始检测”，保持 App 在前台。</li>
   <li>人员满足抓拍条件后自动拍照；确认人员离开后自动重新布防。</li>
-  <li>在 App 相册页或系统 Pictures/PasserWatch 中查看照片。</li>
+  <li>在 App 相册页或系统 Pictures/Zhaomian 中查看照片。</li>
   <li>需要调整规则时先停止检测，再修改设置。</li>
 </ol>
 

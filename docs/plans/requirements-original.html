@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="过客哨 PasserWatch：旧 Android 手机检测有人出现并保存一张本地图片的项目设计与开发路线。">
-  <title>过客哨 · Android 项目设计</title>
+  <meta name="description" content="照面 Zhaomian：旧 Android 手机检测有人出现并保存一张本地图片的项目设计与开发路线。">
+  <title>照面 · Android 项目设计</title>
   <style>
     :root{--bg:#f4f6f2;--paper:#fff;--ink:#20332d;--muted:#62716b;--brand:#176a53;--line:#dce5df;--soft:#edf5ef;--accent:#d4913b}
     *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:24px}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Microsoft YaHei","PingFang SC",system-ui,sans-serif;font-size:16px;line-height:1.8}
@@ -19,7 +19,7 @@
 <div class="wrap">
   <header class="hero">
     <div class="eyebrow">ANDROID PROJECT / DESIGN v0.2</div>
-    <h1>过客哨 <span lang="en">PasserWatch</span></h1>
+    <h1>照面 <span lang="en">Zhaomian</span></h1>
     <p class="subtitle">有人出现，留下一张现场图片。</p>
     <p class="lead">把旧 Android 手机固定摆放，让它持续观察相机画面。开始后一直检测：有人出现 → 保存一张 JPG → 继续观察 → 人离开后重新待命 → 下次有人出现再保存一张。</p>
     <div class="chips"><span class="chip">本地识别</span><span class="chip">持续监测</span><span class="chip">每次出现一张</span><span class="chip">离线可用</span><span class="chip">Kotlin + CameraX</span></div>
@@ -33,7 +33,7 @@
     <main>
       <section id="scope">
         <h2><span class="num">01</span>名称与第一版范围</h2>
-        <p><strong>中文名：过客哨。英文名：PasserWatch。</strong>“过客”对应相机前出现的人，“哨”表示持续观察。工程目录可用 <code>passer-watch</code>，App 显示名称使用“过客哨”。这是项目工作名，尚未做商标或应用商店重名检索。</p>
+        <p><strong>中文名：照面。英文名：Zhaomian。</strong>“过客”对应相机前出现的人，“哨”表示持续观察。工程目录可用 <code>passer-watch</code>，App 显示名称使用“照面”。这是项目工作名，尚未做商标或应用商店重名检索。</p>
         <div class="cards">
           <div class="card"><strong>已确认的需求</strong><p>使用旧 Android 手机的相机一直运行；每次有人经过保存一张本地图片，保存后继续检测；当前先不处理推送和另一台手机的接收。</p></div>
           <div class="card"><strong>截图去重规则</strong><p>一次有人出现只保存一张，人一直停留时不重复保存。确认画面持续无人后自动重新待命，下一次有人出现再保存；不需要手动重新开始。</p></div>
@@ -231,7 +231,7 @@
       </section>
     </main>
   </div>
-  <footer class="footer">过客哨 · PasserWatch · 持续监测与本地抓拍设计 · 2026-10-13<br>独立 HTML 文档，无外部字体、图片或脚本依赖，可离线阅读和打印。</footer>
+  <footer class="footer">照面 · Zhaomian · 持续监测与本地抓拍设计 · 2026-10-13<br>独立 HTML 文档，无外部字体、图片或脚本依赖，可离线阅读和打印。</footer>
 </div>
 </body>
 </html>

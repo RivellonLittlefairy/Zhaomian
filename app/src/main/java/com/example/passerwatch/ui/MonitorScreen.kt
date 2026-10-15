@@ -204,8 +204,8 @@ fun MonitorScreen(vm: MonitorViewModel = viewModel()) {
         }
     }
     if (showAbout) AlertDialog(onDismissRequest = { showAbout = false },
-        title = { Text("过客哨 · 本机运行") },
-        text = { Text("识别在手机本地完成。请保持应用前台；切换相册或规则页会停止检测，回到实时页后手动开始。\n\n新抓拍保存到 Pictures/PasserWatch，并保留 App 内副本。查看原图也会暂停检测。") },
+        title = { Text("照面 · 本机运行") },
+        text = { Text("识别在手机本地完成。请保持应用前台；切换相册或规则页会停止检测，回到实时页后手动开始。\n\n新抓拍保存到 Pictures/Zhaomian，并保留 App 内副本。查看原图也会暂停检测。") },
         confirmButton = { TextButton(onClick = { showAbout = false }) { Text("知道了") } },
         dismissButton = { TextButton(onClick = { showAbout = false; context.startActivity(Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
             Uri.parse("package:${context.packageName}"))) }) { Text("权限设置") } })
@@ -215,7 +215,7 @@ fun MonitorScreen(vm: MonitorViewModel = viewModel()) {
 private fun SentryHeader(running: Boolean, tab: Int, onAbout: () -> Unit) {
     Row(Modifier.fillMaxWidth().statusBarsPadding().padding(horizontal = 16.dp, vertical = 4.dp),
         verticalAlignment = Alignment.CenterVertically) {
-        Text(if (tab == 0) "过客哨" else if (tab == 1) "抓拍相册" else "检测规则",
+        Text(if (tab == 0) "照面" else if (tab == 1) "抓拍相册" else "检测规则",
             modifier = Modifier.weight(1f), fontSize = 20.sp, fontWeight = FontWeight.Bold)
         Text(if (running) "监控中" else "本机离线", color = MaterialTheme.colorScheme.onSurfaceVariant,
             style = MaterialTheme.typography.labelSmall)

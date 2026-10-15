@@ -37,7 +37,7 @@ private val SentryColorScheme = darkColorScheme(
 
 @Suppress("UNUSED_PARAMETER")
 @Composable
-fun PasserWatchTheme(
+fun ZhaomianTheme(
     darkTheme: Boolean = true,
     dynamicColor: Boolean = false,
     content: @Composable () -> Unit

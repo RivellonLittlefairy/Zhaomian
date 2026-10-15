@@ -37,7 +37,7 @@ class CaptureRepository(private val store: SnapshotStorage) {
                         job.sessionId?.let { counts[it] = (counts[it] ?: 0) + 1 }
                         while (counts.size > 8) counts.remove(counts.keys.first())
                         old.copy(latest = record, pending = (old.pending - 1).coerceAtLeast(0),
-                            message = if (record.galleryUri != null) "已保存到相册 · Pictures/PasserWatch" else "已保存到 App 内", savedCounts = counts)
+                            message = if (record.galleryUri != null) "已保存到相册 · Pictures/Zhaomian" else "已保存到 App 内", savedCounts = counts)
                     },
                     onFailure = { error ->
                         old.copy(pending = (old.pending - 1).coerceAtLeast(0),
@@ -48,9 +48,9 @@ class CaptureRepository(private val store: SnapshotStorage) {
                 )
             }
             result.onSuccess {
-                Log.i("PasserWatch", "saved session=${job.sessionId} bytes=${it.bytes}")
+                Log.i("Zhaomian", "saved session=${job.sessionId} bytes=${it.bytes}")
                 runCatching { refreshRecords() }.onFailure { error ->
-                    Log.w("PasserWatch", "Unable to refresh capture list", error)
+                    Log.w("Zhaomian", "Unable to refresh capture list", error)
                 }
             }
         }
@@ -84,7 +84,7 @@ class CaptureRepository(private val store: SnapshotStorage) {
             val record = if (initial) store.initialize() else store.latest()
             mutable.update { it.copy(initialized = it.initialized || initial,
                 latest = if (it.latest == observedLatest) record ?: it.latest else it.latest,
-                message = if (initial) "新抓拍保存到相册 · Pictures/PasserWatch" else it.message) }
+                message = if (initial) "新抓拍保存到相册 · Pictures/Zhaomian" else it.message) }
             refreshRecords()
         } catch (e: Exception) {
             mutable.update { it.copy(initialized = it.initialized || initial, message = "读取图片失败：${e.message}") }

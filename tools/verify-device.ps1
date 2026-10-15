@@ -39,7 +39,7 @@ try {
         throw "设备测试未通过，查看 $logName。"
     }
     if ($Soak) {
-        & $adbPath -s $Serial logcat -d -s 'PasserWatchSoak:I' '*:S' | Set-Content 'docs/device-soak-memory.log' -Encoding utf8
+        & $adbPath -s $Serial logcat -d -s 'ZhaomianSoak:I' '*:S' | Set-Content 'docs/device-soak-memory.log' -Encoding utf8
     }
     Write-Host "测试通过，日志：$logName。"
 } finally { Pop-Location }

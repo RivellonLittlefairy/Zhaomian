@@ -46,7 +46,7 @@ class FrontScreenSoakTest {
                     lastFrames = state.processedFrames
                     val memory = Debug.MemoryInfo().also { Debug.getMemoryInfo(it) }
                     pss.add(memory.totalPss)
-                    Log.i("PasserWatchSoak", "minute=$minute frames=$lastFrames inferenceMs=${state.inferenceMs} pssKb=${memory.totalPss} pending=${vm.storage.value.pending}")
+                    Log.i("ZhaomianSoak", "minute=$minute frames=$lastFrames inferenceMs=${state.inferenceMs} pssKb=${memory.totalPss} pending=${vm.storage.value.pending}")
                 }
             }
             // After warm-up, reject obvious sustained growth, not ordinary GC fluctuation.

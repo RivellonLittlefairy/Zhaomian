@@ -24,6 +24,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "PasserWatch"
+rootProject.name = "Zhaomian"
 include(":app")
  

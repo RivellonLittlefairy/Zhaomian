@@ -21,7 +21,7 @@ import org.junit.runner.RunWith
 class AutomaticCaptureTest {
     @Test fun personDeparturePersonProducesTwoValidJpegsWithoutRestart() {
         val instrument = InstrumentationRegistry.getInstrumentation()
-        val app = instrument.targetContext.applicationContext as PasserWatchApplication
+        val app = instrument.targetContext.applicationContext as ZhaomianApplication
         val directory = File(app.cacheDir, "capture-test-${UUID.randomUUID()}")
         val repository = CaptureRepository(SnapshotStore(directory))
         val vm = MonitorViewModel(app, repository)

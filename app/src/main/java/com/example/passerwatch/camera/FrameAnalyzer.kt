@@ -76,16 +76,16 @@ class FrameAnalyzer(
                 file.outputStream().use { rotated.compress(Bitmap.CompressFormat.PNG, 100, it) }
                 val summary = "${rotated.width}x${rotated.height} rotation=$rotationDegrees zoom=$digitalZoom " +
                     "${result?.reason} ${result?.diagnostics} ${result?.acceleration}"
-                Log.i("PasserWatch", "model input diagnostic $summary")
+                Log.i("Zhaomian", "model input diagnostic $summary")
                 onDiagnostic(file.absolutePath, summary)
             }
-            if (id != null && ++frameCount % 25 == 0) Log.i("PasserWatch",
+            if (id != null && ++frameCount % 25 == 0) Log.i("Zhaomian",
                 "inference=${result?.inferenceMs}ms fps=${result?.actualFps} image=${rotated.width}x${rotated.height} ${result?.acceleration} ${result?.stageTiming} ${result?.reason} ${result?.diagnostics}")
             if (!closed && !intakePaused && intakeEpoch.get() == epoch) onFrame(id, frame, result)
         } catch (_: CancellationException) {
             // Already-running native calls finish, but no subsequent model starts after a stop checkpoint.
         } catch (e: Exception) {
-            Log.e("PasserWatch", "frame processing failed", e)
+            Log.e("Zhaomian", "frame processing failed", e)
             if (!closed && !intakePaused && intakeEpoch.get() == epoch) onError(id, e.message ?: "图像或模型处理失败")
         } finally {
             frame?.close()

@@ -96,7 +96,7 @@ fun SnapshotGalleryPanel(
                     Text(formatGalleryBytes(bytes), color = MaterialTheme.colorScheme.secondary,
                         style = MaterialTheme.typography.headlineSmall, fontFamily = FontFamily.Monospace)
                 }
-                Text("系统相册 Pictures/PasserWatch + App 内副本",
+                Text("系统相册 Pictures/Zhaomian + App 内副本",
                     style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 Text("旧的私有照片可能没有系统相册副本；列表以 App 内实际文件为准。",
                     style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
@@ -148,7 +148,7 @@ fun SnapshotGalleryPanel(
                     style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 OutlinedButton(onClick = {
                     val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                    clipboard.setPrimaryClip(ClipData.newPlainText("PasserWatch 本地抓拍目录", directory))
+                    clipboard.setPrimaryClip(ClipData.newPlainText("Zhaomian 本地抓拍目录", directory))
                     copied = true
                 }, modifier = Modifier.fillMaxWidth()) {
                     Text(if (copied) "已复制本地路径 · 再次复制" else "复制本地目录路径")
