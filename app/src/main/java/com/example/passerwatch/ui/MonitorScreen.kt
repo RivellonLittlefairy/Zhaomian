@@ -28,11 +28,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -47,7 +47,7 @@ import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.passerwatch.BuildConfig
+import com.example.passerwatch.R
 import com.example.passerwatch.camera.CameraController
 import com.example.passerwatch.camera.FrameAnalyzer
 import com.example.passerwatch.model.SnapshotRecord
@@ -67,7 +67,6 @@ fun MonitorScreen(vm: MonitorViewModel = viewModel()) {
     var tab by rememberSaveable { mutableIntStateOf(0) }
     var retry by remember { mutableIntStateOf(0) }
     var selected by remember { mutableStateOf<SnapshotRecord?>(null) }
-    var showAbout by remember { mutableStateOf(false) }
     var controller by remember { mutableStateOf<CameraController?>(null) }
     fun hasCamera() = ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
     fun hasGalleryPermission() = Build.VERSION.SDK_INT >= 29 || ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
@@ -102,7 +101,7 @@ fun MonitorScreen(vm: MonitorViewModel = viewModel()) {
     }
     val preview = remember(context, retry, ui.settings) { PreviewView(context).apply {
         implementationMode = PreviewView.ImplementationMode.COMPATIBLE
-        scaleType = PreviewView.ScaleType.FIT_CENTER
+        scaleType = PreviewView.ScaleType.FILL_CENTER
     } }
     DisposableEffect(granted, owner, preview, tab) {
         if (granted && tab == 0) {
@@ -126,7 +125,7 @@ fun MonitorScreen(vm: MonitorViewModel = viewModel()) {
     BackHandler(selected == null && tab != 0) { navigate(0) }
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
-        topBar = { SentryHeader(ui.running, tab) { showAbout = true } },
+        topBar = { SentryHeader(tab, ui.darkTheme, vm::toggleTheme) },
         bottomBar = { SentryNavigation(tab, ::navigate) }
     ) { insets ->
         Column(Modifier.fillMaxSize().padding(insets)) {
@@ -140,10 +139,10 @@ fun MonitorScreen(vm: MonitorViewModel = viewModel()) {
                 when (tab) {
                     0 -> LiveSentryPanel(ui, storage, preview = {
                         if (granted) key(preview) {
-                            BoxWithConstraints(Modifier.fillMaxSize().clipToBounds(), contentAlignment = Alignment.Center) {
-                                val height = minOf(maxHeight, maxWidth / ui.previewAspect)
-                                AndroidView(factory = { preview }, modifier = Modifier.width(height * ui.previewAspect).height(height)
-                                    .graphicsLayer { scaleX = ui.digitalCropRatio; scaleY = ui.digitalCropRatio })
+                            Box(Modifier.fillMaxSize().clipToBounds()) {
+                                AndroidView(factory = { CameraPreviewView(it, preview) }, modifier = Modifier.fillMaxSize(),
+                                    onRelease = { it.releasePreview() },
+                                    update = { it.update(ui.digitalCropRatio, ui.zoomRatio, ui.darkTheme) })
                             }
                         }
                         else Box(Modifier.fillMaxSize().background(Color.Black), contentAlignment = Alignment.Center) {
@@ -157,18 +156,10 @@ fun MonitorScreen(vm: MonitorViewModel = viewModel()) {
                             }
                         }
                     }, canStart = granted && galleryGranted && ui.cameraReady && storage.initialized,
-                        manualEnabled = BuildConfig.DEBUG && !ui.running && galleryGranted && ui.cameraReady && storage.initialized && !storage.paused && storage.pending == 0,
                         onToggle = { if (ui.running) vm.stop() else vm.start() },
                         onRetry = { vm.stop(); vm.clearError(); retry++ },
-                        onManual = { controller?.requestManualFrame() },
                         onOpenLatest = { storage.latest?.let(::openPhoto) }, onResumeSaving = vm::resumeSaving,
-                        cameraControls = {
-                            Column {
-                                LensZoomControls(ui) { controller?.setZoom(it) }
-                                if (BuildConfig.DEBUG) TextButton(onClick = { controller?.requestDiagnosticFrame() },
-                                    enabled = ui.running && ui.cameraReady) { Text("调试：查看模型输入") }
-                            }
-                        })
+                        onZoom = { controller?.setZoom(it) })
                     1 -> SnapshotGalleryPanel(storage, records, vm::reloadGallery, ::openPhoto)
                     2 -> DetectionRulesPanel(ui.settings, ui.running, ui, storage.pending, vm::applySettings)
                 }
@@ -203,23 +194,19 @@ fun MonitorScreen(vm: MonitorViewModel = viewModel()) {
             }
         }
     }
-    if (showAbout) AlertDialog(onDismissRequest = { showAbout = false },
-        title = { Text("照面 · 本机运行") },
-        text = { Text("识别在手机本地完成。请保持应用前台；切换相册或规则页会停止检测，回到实时页后手动开始。\n\n新抓拍保存到 Pictures/Zhaomian，并保留 App 内副本。查看原图也会暂停检测。") },
-        confirmButton = { TextButton(onClick = { showAbout = false }) { Text("知道了") } },
-        dismissButton = { TextButton(onClick = { showAbout = false; context.startActivity(Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-            Uri.parse("package:${context.packageName}"))) }) { Text("权限设置") } })
 }
 
 @Composable
-private fun SentryHeader(running: Boolean, tab: Int, onAbout: () -> Unit) {
+private fun SentryHeader(tab: Int, darkTheme: Boolean, onThemeToggle: () -> Unit) {
     Row(Modifier.fillMaxWidth().statusBarsPadding().padding(horizontal = 16.dp, vertical = 4.dp),
         verticalAlignment = Alignment.CenterVertically) {
         Text(if (tab == 0) "照面" else if (tab == 1) "抓拍相册" else "检测规则",
             modifier = Modifier.weight(1f), fontSize = 20.sp, fontWeight = FontWeight.Bold)
-        Text(if (running) "监控中" else "本机离线", color = MaterialTheme.colorScheme.onSurfaceVariant,
-            style = MaterialTheme.typography.labelSmall)
-        IconButton(onClick = onAbout) { Text("ⓘ", fontSize = 22.sp) }
+        IconButton(onClick = onThemeToggle, modifier = Modifier.size(48.dp)) {
+            Icon(painter = painterResource(if (darkTheme) R.drawable.ic_theme_sun else R.drawable.ic_theme_moon),
+                contentDescription = if (darkTheme) "切换到日间模式" else "切换到夜间模式",
+                tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(24.dp))
+        }
     }
 }
 @Composable
@@ -258,4 +245,3 @@ private fun SentryNavigation(selected: Int, onSelect: (Int) -> Unit) {
         }
     }
 }
-

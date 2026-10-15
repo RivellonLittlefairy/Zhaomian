@@ -27,7 +27,7 @@ class MonitorViewModel @JvmOverloads constructor(
         scoreThreshold = preferences.getFloat("score", 0.6f).takeIf { it.isFinite() }?.coerceIn(0.3f, 0.95f) ?: 0.6f,
         confirmationFrames = preferences.getInt("frames", 2).coerceIn(1, 5),
         vacantSeconds = preferences.getFloat("vacant", 2f).takeIf { it.isFinite() }?.coerceIn(1f, 5f) ?: 2f)
-    private val mutable = MutableStateFlow(MonitorUiState(settings = loadSettings()))
+    private val mutable = MutableStateFlow(MonitorUiState(settings = loadSettings(), darkTheme = preferences.getBoolean("dark-theme", true)))
     val state = mutable.asStateFlow()
     private val sessions = SessionTracker()
     private var gate = CaptureGate(mutable.value.settings.confirmationFrames, mutable.value.settings.vacantMs, mutable.value.settings.maxResultGapMs)
@@ -72,6 +72,11 @@ class MonitorViewModel @JvmOverloads constructor(
             .putInt("frames", settings.confirmationFrames).putFloat("vacant", settings.vacantSeconds).apply()
         mutable.update { it.copy(settings = settings, acceleration = "等待模型加载", actualFps = 0f,
             stageTiming = "", inferenceMs = 0, processedFrames = 0, error = null) }
+    }
+    fun toggleTheme() = synchronized(lock) {
+        val dark = !mutable.value.darkTheme
+        preferences.edit().putBoolean("dark-theme", dark).apply()
+        mutable.update { it.copy(darkTheme = dark) }
     }
     fun reloadGallery() = captures.reloadLatest()
     suspend fun galleryUri(record: com.example.passerwatch.model.SnapshotRecord) = captures.resolveGalleryUri(record)

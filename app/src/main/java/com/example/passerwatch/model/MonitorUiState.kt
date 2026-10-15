@@ -1,6 +1,7 @@
 package com.example.passerwatch.model
 
 data class MonitorUiState(
+    val darkTheme: Boolean = true,
     val running: Boolean = false,
     val sessionId: Long? = null,
     val cameraReady: Boolean = false,

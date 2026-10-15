@@ -3,60 +3,84 @@ package com.example.passerwatch.ui
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.gestures.awaitEachGesture
+import androidx.compose.foundation.gestures.awaitFirstDown
+import androidx.compose.foundation.gestures.calculateZoom
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.input.pointer.positionChanged
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.example.passerwatch.BuildConfig
 import com.example.passerwatch.model.MonitorUiState
 import com.example.passerwatch.model.StorageState
-import com.example.passerwatch.ui.theme.*
 import java.util.Locale
 
-/** Camera stays visible and bound while the zoom sheet is open. */
-@OptIn(ExperimentalMaterial3Api::class)
+/** Pinch the preview to zoom; controls never cover the live scene. */
 @Composable
 fun LiveSentryPanel(
     ui: MonitorUiState,
     storage: StorageState,
     preview: @Composable () -> Unit,
     canStart: Boolean,
-    manualEnabled: Boolean,
     onToggle: () -> Unit,
     onRetry: () -> Unit,
-    onManual: () -> Unit,
     onOpenLatest: () -> Unit,
     onResumeSaving: () -> Unit,
-    cameraControls: @Composable () -> Unit = {}
+    onZoom: (Float) -> Unit
 ) {
-    var showZoom by remember { mutableStateOf(false) }
+    val currentUi by rememberUpdatedState(ui)
+    val updateZoom by rememberUpdatedState(onZoom)
+    val colors = MaterialTheme.colorScheme
     val accent = when {
         ui.error != null || storage.paused -> MaterialTheme.colorScheme.error
-        ui.running -> SentryGreen
-        else -> SentryAmber
+        ui.running -> colors.primary
+        else -> colors.tertiary
     }
     Column(Modifier.fillMaxSize().padding(horizontal = 12.dp, vertical = 8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        Box(Modifier.weight(1f).fillMaxWidth().clip(RoundedCornerShape(16.dp)).background(Color.Black)) {
-            preview()
-            Surface(Modifier.align(Alignment.TopStart).padding(10.dp),
-                color = SentryLowest.copy(alpha = .78f), shape = RoundedCornerShape(8.dp)) {
-                Row(Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
-                    verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Box(Modifier.size(7.dp).clip(RoundedCornerShape(50)).background(accent))
-                    Text(ui.monitorText, color = accent, style = MaterialTheme.typography.labelMedium)
+        Surface(Modifier.fillMaxWidth(), color = colors.surfaceContainerLow, shape = RoundedCornerShape(10.dp)) {
+            Row(Modifier.fillMaxWidth().heightIn(min = 52.dp).padding(horizontal = 12.dp, vertical = 8.dp),
+                verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                Box(Modifier.size(7.dp).clip(RoundedCornerShape(50)).background(accent))
+                Text(ui.monitorText, modifier = Modifier.weight(1f), color = accent,
+                    style = MaterialTheme.typography.labelMedium, maxLines = 2, overflow = TextOverflow.Ellipsis)
+                Column(horizontalAlignment = Alignment.End) {
+                    Text("实际帧率", style = MaterialTheme.typography.labelSmall, color = colors.onSurfaceVariant)
+                    Text(if (ui.running && ui.cameraReady && ui.actualFps > 0f) String.format(Locale.US, "%.1f FPS", ui.actualFps) else "— FPS",
+                        style = MaterialTheme.typography.labelLarge, color = colors.primary)
                 }
             }
-            TextButton(onClick = { showZoom = true }, modifier = Modifier.align(Alignment.BottomEnd).padding(10.dp),
-                colors = ButtonDefaults.textButtonColors(containerColor = SentryLowest.copy(alpha = .8f), contentColor = Color.White)) {
-                Text(String.format(Locale.US, "%.1f×  缩放", ui.zoomRatio))
-            }
+        }
+        // Camera and zoom label share stable screen bounds, independent of the lens output aspect.
+        Box(Modifier.weight(1f).fillMaxWidth().clip(RoundedCornerShape(16.dp)).background(Color.Black)) {
+            preview()
+            // A Compose overlay owns the gesture, so AndroidView cannot swallow pinch events.
+            // Accumulate locally for the whole touch sequence: camera zoom reports can lag while switching lenses.
+            Box(Modifier.fillMaxSize().pointerInput(Unit) {
+                awaitEachGesture {
+                    awaitFirstDown(requireUnconsumed = false)
+                    var requested = currentUi.zoomRatio
+                    val enabled = currentUi.cameraReady
+                    do {
+                        val event = awaitPointerEvent()
+                        if (enabled && event.changes.count { it.pressed && it.previousPressed } >= 2) {
+                            val factor = event.calculateZoom()
+                            val limits = currentUi
+                            if (factor.isFinite() && factor > 0f && factor != 1f && limits.maxZoom > limits.minZoom) {
+                                requested = (requested * factor).coerceIn(limits.minZoom, limits.maxZoom)
+                                updateZoom(requested)
+                                event.changes.forEach { if (it.positionChanged()) it.consume() }
+                            }
+                        }
+                    } while (event.changes.any { it.pressed })
+                }
+            })
         }
         if (ui.error != null || storage.paused) {
             Surface(color = MaterialTheme.colorScheme.errorContainer, shape = RoundedCornerShape(8.dp)) {
@@ -74,8 +98,8 @@ fun LiveSentryPanel(
             Button(onClick = onToggle, enabled = ui.running || canStart,
                 modifier = Modifier.weight(1f).heightIn(min = 52.dp), shape = RoundedCornerShape(10.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = if (ui.running) MaterialTheme.colorScheme.errorContainer else SentryGreen,
-                    contentColor = if (ui.running) MaterialTheme.colorScheme.onErrorContainer else SentryLowest)) {
+                    containerColor = if (ui.running) MaterialTheme.colorScheme.errorContainer else colors.primary,
+                    contentColor = if (ui.running) MaterialTheme.colorScheme.onErrorContainer else colors.onPrimary)) {
                 Text(if (ui.running) "■  停止检测" else "▶  开始检测")
             }
             val latest = storage.latest
@@ -85,18 +109,11 @@ fun LiveSentryPanel(
                     Column { LocalCaptureImage(latest.path, showMetadata = false) }
                 }
                 Column {
-                    Text("最新抓拍 ›", style = MaterialTheme.typography.labelMedium, color = SentryGreen)
+                    Text("最新抓拍 ›", style = MaterialTheme.typography.labelMedium, color = colors.primary)
                     Text(if (latest == null) "等待抓拍" else "已保存 ${ui.sessionId?.let { storage.savedCounts[it] } ?: 0} 张",
-                        style = MaterialTheme.typography.labelSmall, color = SentryMuted)
+                        style = MaterialTheme.typography.labelSmall, color = colors.onSurfaceVariant)
                 }
             }
-        }
-    }
-    if (showZoom) ModalBottomSheet(onDismissRequest = { showZoom = false },
-        sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)) {
-        Column(Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).padding(horizontal = 12.dp).padding(bottom = 20.dp)) {
-            cameraControls()
-            if (BuildConfig.DEBUG) TextButton(onClick = onManual, enabled = manualEnabled) { Text("调试：手动拍照") }
         }
     }
 }
